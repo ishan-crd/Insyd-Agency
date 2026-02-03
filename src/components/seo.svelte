@@ -26,7 +26,7 @@
 
     <title>{title || $page.data.page?.story?.content?.seo_title || t('seo.title')}</title>
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@SignificaDotCo" />
+    <meta name="twitter:site" content="@InsydAgency" />
 
     {#if structureDataMarkup}
       <!-- eslint-disable-next-line svelte/no-at-html-tags -->
@@ -81,8 +81,8 @@
       <meta property="og:image" content={image} />
       <meta property="twitter:image" content={image} />
     {:else}
-      <meta property="og:image" content="{$page.url.origin}/og.png" />
-      <meta property="twitter:image" content="{$page.url.origin}/og.png" />
+      <meta property="og:image" content="{$page.url.origin}/insyd-banner.png" />
+      <meta property="twitter:image" content="{$page.url.origin}/insyd-banner.png" />
     {/if}
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

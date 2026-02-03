@@ -15,7 +15,7 @@
 
 {#key story.full_slug}
   <Seo
-    title={story.content.seo_title || `${story.name} - Handbook by Significa`}
+    title={story.content.seo_title || `${story.name} - Handbook by Insyd`}
     description={story.content.seo_description}
     image={story.content.seo_og_image}
     structureDataMarkup={story.content.structure_data_markup}

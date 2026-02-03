@@ -46,8 +46,8 @@
 </script>
 
 <Seo
-  title="Handbook by Significa"
-  description="Our handbook: the ultimate source of truth for everything about Significa—our culture, values, and the way we work."
+  title="Handbook by Insyd"
+  description="Our handbook: the ultimate source of truth for everything about Insyd—our culture, values, and the way we work."
   image={handbookOG}
   {structureDataMarkup}
 />

@@ -1,9 +1,9 @@
-import type { RequestHandler } from './$types';
 import { getStoryblok } from '$lib/storyblok';
 import type { BlogPostStoryblok } from '$types/bloks';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
-  const baseUrl = 'https://www.significa.co/blog/';
+  const baseUrl = 'https://insyd.in/blog/';
   const storyblok = getStoryblok();
 
   const posts: BlogPostStoryblok[] = await storyblok.getAll('cdn/stories', {
@@ -29,7 +29,7 @@ const render = (baseUrl: string, title: string, desc: string, posts: BlogPostSto
   `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
       <channel>
-        <atom:link href="http://significa.co/rss.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://insyd.in/rss.xml" rel="self" type="application/rss+xml" />
         <title>${title}</title>
         <link>${baseUrl}</link>
         <description>${desc}</description>

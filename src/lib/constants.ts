@@ -1,4 +1,4 @@
-export const PREVIEW_COOKIE_KEY = '__significa-preview__';
+export const PREVIEW_COOKIE_KEY = '__insyd-preview__';
 export const ISR_BYPASS_COOKIE_KEY = '__prerender_bypass';
 
 export const HOME_SLUG = 'home';

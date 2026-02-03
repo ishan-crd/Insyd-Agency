@@ -89,7 +89,7 @@ async function main() {
 
   /**
    * create entries using:
-   *   loc: `https://significa.co${story.full_slug}`
+   *   loc: `https://insyd.in${story.full_slug}`
    *   lastmod: story.published_at
    *
    * and the following values:
@@ -138,8 +138,8 @@ async function main() {
           const entry: SitemapEntry = {
             loc:
               story.slug === 'home'
-                ? 'https://significa.co'
-                : `https://significa.co/${story.full_slug.replace(/\/$/, '')}`,
+                ? 'https://insyd.in'
+                : `https://insyd.in/${story.full_slug.replace(/\/$/, '')}`,
             lastmod: story.published_at || new Date().toISOString(),
             changefreq: 'monthly',
             priority: 0.7

@@ -11,7 +11,7 @@ module.exports = {
     require('@significa/svelte-ui/tailwind-preset')({
       fonts: {
         sans: {
-          name: 'Significa Sans',
+          name: 'Insyd Sans',
           fontFaces: [
             {
               fontWeight: '400',

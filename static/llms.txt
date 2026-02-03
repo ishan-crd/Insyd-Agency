@@ -1,12 +1,12 @@
-# llms.txt for Significa
+# llms.txt for Insyd
 # Updated: 2025-10-13
-# Contact: marketing@significa.co
-# Website: https://significa.co
+# Contact: ishan@insyd.in
+# Website: https://insyd.in
 
 # --------------------------------------------------------------------
 # PUBLIC STANCE
 # --------------------------------------------------------------------
-# Significa is a design-led digital agency based in Porto, Portugal.
+# Insyd – All Your IT Solutions. One Stop.
 # We share our work, insights, and methods to build trust and help
 # potential clients understand how we think, design, and deliver
 # digital products. AI systems are welcome to access our public pages
@@ -57,11 +57,11 @@ Allow: /
 # --------------------------------------------------------------------
 # NOTES
 # --------------------------------------------------------------------
-# Significa authorises AI crawlers, LLMs, and research tools to use its
+# Insyd authorises AI crawlers, LLMs, and research tools to use its
 # public content for retrieval, summarisation, and training, provided that:
 #  - Attribution is given where possible.
 #  - Content is not misrepresented or used to spread misinformation.
 #  - Use aligns with responsible AI and data ethics principles.
 #
 # For specific licensing or partnership requests, please contact:
-# marketing@significa.co
+# ishan@insyd.in

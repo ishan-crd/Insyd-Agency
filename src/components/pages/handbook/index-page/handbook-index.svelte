@@ -28,13 +28,13 @@
 </script>
 
 <Seo
-  title="Handbook by Significa"
-  description="Our handbook: the ultimate source of truth for everything about Significa—our culture, values, and the way we work."
+  title="Handbook by Insyd"
+  description="Our handbook: the ultimate source of truth for everything about Insyd—our culture, values, and the way we work."
   image={handbookOG}
   {structureDataMarkup}
 />
 <div class="container mx-auto px-container">
-  <h1 class="sr-only">Handbook by Significa</h1>
+  <h1 class="sr-only">Handbook by Insyd</h1>
   <img alt="Handbook" src={handbook} class="mx-auto mb-20 mt-28 w-80" />
 
   <form
