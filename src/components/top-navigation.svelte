@@ -5,7 +5,8 @@
   import { getAnchorFromCmsLink } from '$lib/utils/cms';
   import { sanitizeSlug } from '$lib/utils/paths';
   import type { ConfigurationStoryblok } from '$types/bloks';
-  import { Badge, Button, Link, Logo } from '@significa/svelte-ui';
+  import { Badge, Button, Link } from '@significa/svelte-ui';
+  import insydLogo from '../assets/logo/insyd-logo.png';
   import clsx from 'clsx';
   import { fade, fly } from 'svelte/transition';
   import { createTopNavScrollStatus } from '$lib/stores/topnav-scroll-status';
@@ -38,7 +39,7 @@
     <div class="container mx-auto flex items-center justify-between px-container py-4">
       <div class="flex items-center gap-2">
         <a aria-label="Go to homepage" href="/">
-          <Logo class="mt-1" variant="wordmark" />
+          <img src={insydLogo} alt="Insyd" class="mt-1 h-10 w-auto" />
         </a>
       </div>
 
@@ -91,7 +92,7 @@
       )}
     >
       <div class="flex w-full items-center justify-between">
-        <Logo variant="symbol" />
+        <img src={insydLogo} alt="Insyd" class="h-10 w-auto" />
         <div class="flex gap-4">
           {#if configuration.call_to_action?.length}
             {@const { href } = getAnchorFromCmsLink(configuration.call_to_action[0].link)}

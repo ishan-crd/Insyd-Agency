@@ -7,8 +7,10 @@
 
 <script lang="ts">
   import { browser } from '$app/environment';
+  import { env } from '$env/dynamic/public';
   import { applyAction, enhance } from '$app/forms';
   import { page } from '$app/stores';
+  import { AGENCY } from '$lib/mock-data';
   import { t } from '$lib/i18n';
   import {
     type FileUploadItem,
@@ -66,6 +68,8 @@
     attachments = '';
   }
 
+  const isStaticMode = !env.PUBLIC_STORYBLOK_TOKEN?.trim();
+
   const dispatch = createEventDispatcher<{
     focus: string;
     blur: string;
@@ -119,7 +123,16 @@
   }
 </script>
 
-{#if variant === undefined}
+{#if isStaticMode}
+  <div class="rounded-lg border bg-background-panel p-8">
+    <p class="text-lg text-foreground-secondary">
+      Forms are disabled in static mode. Reach out directly at
+      <a href="mailto:{AGENCY.email}" class="font-medium text-foreground underline"
+        >{AGENCY.email}</a
+      >.
+    </p>
+  </div>
+{:else if variant === undefined}
   <div class="mb-8 border-b pb-8 @container">
     <p class="font-medium leading-none">{t('contact.type.title')}</p>
     <p class="mt-1 leading-none text-foreground-secondary">{t('contact.type.description')}</p>
@@ -144,6 +157,7 @@
     </div>
   </div>
 {/if}
+{#if !isStaticMode}
 <form
   id="contact-form"
   method="POST"
@@ -297,3 +311,4 @@
     </div>
   </div>
 </form>
+{/if}

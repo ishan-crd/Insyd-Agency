@@ -11,8 +11,11 @@
     <h2 class="text-5xl">{block.work_title}</h2>
   </div>
   <div class="mt-4 md:mt-6 lg:mt-8">
-    {#each block.projects || [] as project}
-      <ProjectEntry {project} />
+    {#each block.projects || [] as project, i}
+      <ProjectEntry
+        {project}
+        variant={i === 0 ? 'featured' : i === 1 ? 'featured-reversed' : 'default'}
+      />
     {/each}
   </div>
 </section>

@@ -10,9 +10,12 @@
   import Recognitions from './recognitions.svelte';
   import type { ProjectPage } from '$lib/content';
   import { page } from '$app/stores';
+  import unmesaLogo from '../assets/logo/unmesalogo.svg';
+  import unmesaVideo from '../assets/vid/unmesavid.mp4';
+  import Reel from './reel.svelte';
 
   export let project: ISbStoryData<ProjectStoryblok> | ProjectPage;
-  export let variant: 'featured' | 'default' = 'default';
+  export let variant: 'featured' | 'featured-reversed' | 'default' = 'default';
   export let as: 'h2' | 'h3' = 'h3';
 
   let index = 0;
@@ -35,18 +38,30 @@
   on:mouseleave={onMouseLeave}
   class="group border-b py-12 transition-colors elevated-links @container first:border-t hover:bg-foreground-tertiary/10"
 >
-  <div class={clsx('container mx-auto px-container', variant === 'default' && '@5xl:flex')}>
+  <div
+    class={clsx(
+      'container mx-auto px-container',
+      (variant === 'featured' || variant === 'featured-reversed') &&
+        'flex flex-col gap-8 @5xl:flex-row @5xl:items-center @5xl:gap-12',
+      variant === 'featured-reversed' && '@5xl:flex-row-reverse',
+      variant === 'default' && '@5xl:flex'
+    )}
+  >
     <div
       class={clsx(
-        variant === 'featured' && 'items-end justify-between @5xl:flex',
+        (variant === 'featured' || variant === 'featured-reversed') && 'flex flex-1 flex-col justify-between',
         variant === 'default' && 'flex flex-1 flex-col items-start justify-between'
       )}
     >
       <div class="mr-6">
         <a class="elevated-link" href={`/projects/${project.slug}`}>
-          <svelte:element this={as} class="text-5xl text-foreground-secondary">
-            {project.name}
-          </svelte:element>
+          {#if project.slug === 'unmesa' || project.slug === 'project-two'}
+            <img src={unmesaLogo} alt="Unmesa" class="mb-4 h-12 w-auto md:h-14" />
+          {:else}
+            <svelte:element this={as} class="text-5xl text-foreground-secondary">
+              {project.name}
+            </svelte:element>
+          {/if}
           <p class={clsx('text-5xl', variant === 'default' ? 'max-w-lg' : 'max-w-3xl')}>
             {project.content.tagline}
           </p>
@@ -55,7 +70,7 @@
           <div
             class={clsx(
               'mt-6 grid grid-flow-col grid-cols-2 grid-rows-3 gap-4',
-              variant === 'featured' && '@5xl:flex'
+              (variant === 'featured' || variant === 'featured-reversed') && '@5xl:flex'
             )}
           >
             <Recognitions as={as === 'h2' ? 'h3' : 'h4'} {recognitions} />
@@ -67,29 +82,35 @@
       >
     </div>
 
-    {#if variant === 'featured'}
-      {#if project.content.reel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(project.content.reel.filename))}
-        <video
-          bind:this={video}
-          class="pointer-events-none mt-8 aspect-video h-auto w-full rounded-md bg-background-offset"
-          muted
-          playsinline
-          autoplay
-          loop
-          src={project.content.reel.filename}
-        />
-      {:else if project.content.cover?.filename}
-        {@const { src, alt, width, height } = getImageAttributes(project.content.cover, {
-          size: [1440 * 2, 0]
-        })}
-        <img
-          class="mt-8 h-auto w-full rounded-md bg-background-offset"
-          {src}
-          {alt}
-          {width}
-          {height}
-        />
-      {/if}
+    {#if variant === 'featured' || variant === 'featured-reversed'}
+      <div class="flex flex-1 items-center justify-center @5xl:mt-0">
+        {#if project.slug === 'unmesa' || project.slug === 'project-two'}
+          <div class="w-full max-w-xl">
+            <Reel src={unmesaVideo} playLabel="Play showreel" />
+          </div>
+        {:else if project.content.reel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(project.content.reel.filename))}
+          <video
+            bind:this={video}
+            class="pointer-events-none aspect-video h-auto w-full max-w-xl rounded-md bg-background-offset"
+            muted
+            playsinline
+            autoplay
+            loop
+            src={project.content.reel.filename}
+          />
+        {:else if project.content.cover?.filename}
+          {@const { src, alt, width, height } = getImageAttributes(project.content.cover, {
+            size: [1440 * 2, 0]
+          })}
+          <img
+            class="h-auto w-full max-w-xl rounded-md bg-background-offset object-contain"
+            {src}
+            {alt}
+            {width}
+            {height}
+          />
+        {/if}
+      </div>
     {/if}
 
     {#if variant === 'default' && project.content.thumbnail.length}

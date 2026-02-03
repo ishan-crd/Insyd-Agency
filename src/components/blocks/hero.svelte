@@ -1,10 +1,7 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation';
-  import SmallHighlights from '$components/pages/home/small-highlights.svelte';
   import Reel from '$components/reel.svelte';
-
   import Slogan from '$components/slogan.svelte';
-  import { drawerLinks } from '$lib/actions/drawer-links';
   import { VIDEO_EXTENSIONS } from '$lib/constants';
   import { getImageAttributes } from '$lib/utils/cms';
   import { getFileExtension } from '$lib/utils/strings';
@@ -23,12 +20,12 @@
   });
 </script>
 
-<div class="container mx-auto px-container">
+<div class="container mx-auto px-container py-24 md:py-32 lg:py-40">
   <Slogan
     animate
     on:end={() => (show = true)}
     as="h1"
-    class="mt-10 text-7xl font-bold md:mt-14 lg:mt-20"
+    class="text-7xl font-bold"
   />
 </div>
 
@@ -39,9 +36,9 @@
   )}
 >
   <div class="container mx-auto px-container">
-    <section use:drawerLinks class="mb-8 mt-10 md:mt-14 lg:mt-20">
+    <!-- <section use:drawerLinks class="mb-8 mt-10 md:mt-14 lg:mt-20">
       <SmallHighlights highlights={block.small_highlights} />
-    </section>
+    </section> -->
     {#if block.showreel?.filename && VIDEO_EXTENSIONS.includes(getFileExtension(block.showreel.filename))}
       <Reel
         src={block.showreel.filename}

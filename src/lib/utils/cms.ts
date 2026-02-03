@@ -140,6 +140,22 @@ export function getImageAttributes(
   image: AssetStoryblok | MultiassetStoryblok[number],
   options?: Partial<ImageAttributesOptions>
 ): ImageAttributes {
+  // External URLs or static paths: use as-is (for static mode / mock content)
+  const isExternal =
+    image.filename.startsWith('http') ||
+    image.filename.startsWith('/') ||
+    image?.is_external_url;
+  if (isExternal) {
+    const [width, height] = options?.size ?? [0, 0];
+    return {
+      alt: image.alt || image.name || '',
+      title: image.title || undefined,
+      src: image.filename,
+      width: width ? `${width}px` : 'auto',
+      height: height ? `${height}px` : 'auto'
+    };
+  }
+
   let src = image.filename + '/m/';
 
   const imgSizeAttr = getStoryblokImageSize(image.filename);

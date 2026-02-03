@@ -108,6 +108,16 @@
   </div>
 
   {#each filteredProjects as project, i}
-    <ProjectEntry as="h2" {project} variant={i === 0 && !filters.length ? 'featured' : 'default'} />
+    <ProjectEntry
+      as="h2"
+      {project}
+      variant={
+        !filters.length && i === 0
+          ? 'featured'
+          : !filters.length && i === 1
+            ? 'featured-reversed'
+            : 'default'
+      }
+    />
   {/each}
 </main>
