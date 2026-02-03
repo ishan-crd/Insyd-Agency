@@ -15,7 +15,7 @@
 <div class="grid h-[calc(100dvh-var(--topnav-height))] place-items-center">
   <p class="text-center text-lg">
     {#if showMessage}
-      {statusCode} - {error.message}
+      {statusCode} - {error?.message ?? ''}
     {:else if statusCode >= 500}
       {statusCode} - Something went wrong.<br />We apologize for the inconvenience. If the error
       persists, please contact us.

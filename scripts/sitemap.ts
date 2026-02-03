@@ -1,11 +1,51 @@
-import fs from 'fs';
+import { apiPlugin, type ISbResult, type ISbStoryData, storyblokInit } from '@storyblok/js';
 import * as dotenv from 'dotenv';
-import { ISbResult, ISbStoryData, apiPlugin, storyblokInit } from '@storyblok/js';
+import fs from 'fs';
 
 dotenv.config();
 
+const PUBLIC_STORYBLOK_TOKEN = process.env.PUBLIC_STORYBLOK_TOKEN?.trim();
+
+if (!PUBLIC_STORYBLOK_TOKEN) {
+  // Static mode: generate minimal sitemap from mock pages
+  const baseUrl = process.env.SITE_URL || 'https://insyd.in';
+  const slugs = [
+    '',
+    'about',
+    'projects',
+    'projects/unmesa',
+    'projects/project-two',
+    'services',
+    'contacts',
+    'blog'
+  ];
+  const entries = slugs
+    .map((slug) => ({
+      loc: slug ? `${baseUrl}/${slug}` : baseUrl,
+      lastmod: new Date().toISOString(),
+      changefreq: 'monthly' as const,
+      priority: slug === '' ? 1 : 0.8
+    }))
+    .map(
+      (e) => `    <url>
+      <loc>${e.loc}</loc>
+      <lastmod>${e.lastmod}</lastmod>
+      <changefreq>${e.changefreq}</changefreq>
+      <priority>${e.priority}</priority>
+    </url>`
+    )
+    .join('\n');
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${entries}
+  </urlset>`;
+  fs.writeFileSync('static/sitemap.xml', xml);
+  console.log('Generated static sitemap (no Storyblok token)');
+  process.exit(0);
+}
+
 const { storyblokApi } = storyblokInit({
-  accessToken: process.env.PUBLIC_STORYBLOK_TOKEN,
+  accessToken: PUBLIC_STORYBLOK_TOKEN,
   use: [apiPlugin],
   apiOptions: {
     https: true

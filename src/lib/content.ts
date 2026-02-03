@@ -1,3 +1,6 @@
+import type { ISbResult, ISbStoriesParams, ISbStoryData } from '@storyblok/js';
+import { error } from '@sveltejs/kit';
+import { get } from 'svelte/store';
 import { page } from '$app/stores';
 import { getStoryblok, handleStoryblokError, storyblok } from '$lib/storyblok';
 import type {
@@ -10,9 +13,6 @@ import type {
   RecognitionStoryblok,
   TeamMemberStoryblok
 } from '$types/bloks';
-import type { ISbResult, ISbStoriesParams, ISbStoryData } from '@storyblok/js';
-import { error } from '@sveltejs/kit';
-import { get } from 'svelte/store';
 import { HOME_SLUG } from './constants';
 
 export const PAGE_PARAMS = {
@@ -115,7 +115,11 @@ export const fetchAwardsTypes = async (
 
 // blog posts use other data from the response, so we need to return the whole response
 export const fetchBlogPosts = async (
-  options: { version?: 'draft' | 'published'; fetch?: typeof fetch; url?: URL } = {}
+  options: {
+    version?: 'draft' | 'published';
+    fetch?: typeof fetch;
+    url?: URL;
+  } = {}
 ) => {
   const storyblok = getStoryblok({ fetch: options.fetch || fetch });
 
@@ -129,11 +133,15 @@ export const fetchBlogPosts = async (
         is: false
       }
     }
-  });
+  }) as Promise<ISbResult>;
 };
 
 export const fetchHomeBlogPosts = async (
-  options: { version?: 'draft' | 'published'; fetch?: typeof fetch; url?: URL } = {}
+  options: {
+    version?: 'draft' | 'published';
+    fetch?: typeof fetch;
+    url?: URL;
+  } = {}
 ) => {
   const storyblok = getStoryblok({ fetch: options.fetch || fetch });
 
@@ -155,7 +163,11 @@ export const fetchHomeBlogPosts = async (
 };
 
 export const fetchTeamMembers = async (
-  options: { version?: 'draft' | 'published'; fetch?: typeof fetch; url?: URL } = {}
+  options: {
+    version?: 'draft' | 'published';
+    fetch?: typeof fetch;
+    url?: URL;
+  } = {}
 ) => {
   const storyblok = getStoryblok({ fetch: options.fetch || fetch });
 
@@ -179,13 +191,10 @@ export const fetchProjects = async (
 ) => {
   const storyblok = getStoryblok({ fetch: options.fetch || fetch });
 
-  const res: { data: { stories: ISbStoryData<ProjectStoryblok>[] } } = await storyblok.get(
-    'cdn/stories',
-    {
-      ...PROJECT_PARAMS,
-      version: options.version || 'published'
-    }
-  );
+  const res = (await storyblok.get('cdn/stories', {
+    ...PROJECT_PARAMS,
+    version: options.version || 'published'
+  })) as { data: { stories: ISbStoryData<ProjectStoryblok>[] } };
 
   return res.data.stories;
 };
@@ -240,15 +249,15 @@ export async function fetchPage(options: {
 
   let story: ISbResult;
   try {
-    story = await storyblok.get(`cdn/stories/${slug || HOME_SLUG}`, {
+    story = (await storyblok.get(`cdn/stories/${slug || HOME_SLUG}`, {
       version: options.version || 'published',
       ...PAGE_PARAMS
-    });
+    })) as ISbResult;
   } catch (err) {
     throw handleStoryblokError(err);
   }
 
-  const { data }: { data: { story?: DynamicPage } } = story;
+  const { data } = story as { data: { story?: DynamicPage } };
   if (!data.story?.id) throw error(404, `Storyblok story for ${slug} has no id`);
 
   // Index pages (blog, projects) have their own route but they need to be able to be rendered in the drawer as well

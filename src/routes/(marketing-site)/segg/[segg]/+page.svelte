@@ -15,5 +15,5 @@
   <p class="mt-2 max-w-md text-lg/tight text-foreground-secondary md:mx-auto">
     {t('draw-segg.description')}
   </p>
-  <Button class="mt-6" as="a" href="/careers">{t('draw-segg.cta')}</Button>
+  <Button class="mt-6" as="a" href="/#promise">{t('draw-segg.cta')}</Button>
 </div>

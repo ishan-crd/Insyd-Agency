@@ -10,7 +10,6 @@
   import { env } from '$env/dynamic/public';
   import { applyAction, enhance } from '$app/forms';
   import { page } from '$app/stores';
-  import { AGENCY } from '$lib/mock-data';
   import { t } from '$lib/i18n';
   import {
     type FileUploadItem,
@@ -124,12 +123,36 @@
 </script>
 
 {#if isStaticMode}
-  <div class="rounded-lg border bg-background-panel p-8">
-    <p class="text-lg text-foreground-secondary">
-      Forms are disabled in static mode. Reach out directly at
-      <a href="mailto:{AGENCY.email}" class="font-medium text-foreground underline"
-        >{AGENCY.email}</a
-      >.
+  <div class="space-y-4">
+    <div class="rounded-lg border border-border/50 bg-background/30 p-4 backdrop-blur-sm">
+      <input
+        type="text"
+        placeholder="Name"
+        disabled
+        class="w-full rounded-lg border border-border/50 bg-transparent px-4 py-3 text-foreground placeholder:text-foreground-secondary/60"
+      />
+    </div>
+    <div class="rounded-lg border border-border/50 bg-background/30 p-4 backdrop-blur-sm">
+      <input
+        type="email"
+        placeholder="Email"
+        disabled
+        class="w-full rounded-lg border border-border/50 bg-transparent px-4 py-3 text-foreground placeholder:text-foreground-secondary/60"
+      />
+    </div>
+    <div class="rounded-lg border border-border/50 bg-background/30 p-4 backdrop-blur-sm">
+      <textarea
+        placeholder="Message"
+        disabled
+        rows="4"
+        class="w-full resize-none rounded-lg border border-border/50 bg-transparent px-4 py-3 text-foreground placeholder:text-foreground-secondary/60"
+      ></textarea>
+    </div>
+    <p class="text-center text-base text-foreground-secondary">
+      Contact us at
+      <a href="mailto:ishan@insyd.in" class="font-medium text-foreground underline"
+        >ishan@insyd.in</a
+      >
     </p>
   </div>
 {:else if variant === undefined}
@@ -158,157 +181,157 @@
   </div>
 {/if}
 {#if !isStaticMode}
-<form
-  id="contact-form"
-  method="POST"
-  action={{
-    quote: '/form/quote',
-    career: '/form/career',
-    contact: '/form/contact',
-    estimations: '/form/estimations'
-  }[type]}
-  use:enhance={(form) => {
-    loading = true;
+  <form
+    id="contact-form"
+    method="POST"
+    action={{
+      quote: '/form/quote',
+      career: '/form/career',
+      contact: '/form/contact',
+      estimations: '/form/estimations'
+    }[type]}
+    use:enhance={(form) => {
+      loading = true;
 
-    // let our form handler know that we're using progressive enhancement
-    form.data.append('submitted-using-progressive-enhancement', 'true');
+      // let our form handler know that we're using progressive enhancement
+      form.data.append('submitted-using-progressive-enhancement', 'true');
 
-    return async ({ update, result }) => {
-      loading = false;
-      files = [];
+      return async ({ update, result }) => {
+        loading = false;
+        files = [];
 
-      await applyAction(result);
-      await update();
-    };
-  }}
->
-  <slot name="estimationsform" />
-  <input type="hidden" name="return-to" value={$page.url.pathname} />
-  <div class="flex flex-col gap-4">
-    <div class="flex w-full flex-col gap-4 md:flex-row">
-      <FloatingInput
-        required
-        error={!!$page.form?.error?.fields?.name}
-        name="name"
-        class="w-full"
-        label={t('contact.label.name')}
-        bind:value={name}
-        on:focus={() => dispatch('focus', 'name')}
-        on:blur={() => dispatch('blur', 'name')}
-        on:input={() => dispatch('input', 'name')}
-      />
-      <FloatingInput
-        required
-        error={!!$page.form?.error?.fields?.email}
-        name="email"
-        type="email"
-        class="w-full"
-        label={t('contact.label.email')}
-        bind:value={email}
-        on:focus={() => dispatch('focus', 'email')}
-        on:blur={() => dispatch('blur', 'email')}
-        on:input={() => dispatch('input', 'email')}
-      />
+        await applyAction(result);
+        await update();
+      };
+    }}
+  >
+    <slot name="estimationsform" />
+    <input type="hidden" name="return-to" value={$page.url.pathname} />
+    <div class="flex flex-col gap-4">
+      <div class="flex w-full flex-col gap-4 md:flex-row">
+        <FloatingInput
+          required
+          error={!!$page.form?.error?.fields?.name}
+          name="name"
+          class="w-full"
+          label={t('contact.label.name')}
+          bind:value={name}
+          on:focus={() => dispatch('focus', 'name')}
+          on:blur={() => dispatch('blur', 'name')}
+          on:input={() => dispatch('input', 'name')}
+        />
+        <FloatingInput
+          required
+          error={!!$page.form?.error?.fields?.email}
+          name="email"
+          type="email"
+          class="w-full"
+          label={t('contact.label.email')}
+          bind:value={email}
+          on:focus={() => dispatch('focus', 'email')}
+          on:blur={() => dispatch('blur', 'email')}
+          on:input={() => dispatch('input', 'email')}
+        />
+      </div>
+      {#if type === 'career'}
+        <FloatingSelect
+          name="position"
+          class="w-full"
+          label={t('contact.label.position')}
+          bind:value={position}
+          on:focus={() => dispatch('focus', 'position')}
+          on:blur={() => dispatch('blur', 'position')}
+        >
+          {#each careers as option}
+            <option value={option}>{option}</option>
+          {/each}
+        </FloatingSelect>
+      {/if}
+      <div>
+        <FloatingTextarea
+          required
+          error={!!$page.form?.error?.fields?.message}
+          name="message"
+          class="flex w-full"
+          label={t('contact.label.message')}
+          rows={5}
+          maxlength={2000}
+          bind:value={message}
+          on:focus={() => dispatch('focus', 'message')}
+          on:blur={() => dispatch('blur', 'message')}
+          on:input={() => dispatch('input', 'message')}
+        />
+        <p class="mt-2 text-right text-sm text-foreground-secondary">
+          {message.length}/2000
+        </p>
+      </div>
+
+      {#if type === 'quote' && budgetOptions}
+        <FloatingSelect
+          required
+          name="budget"
+          class="w-full"
+          label={t('contact.label.budget')}
+          bind:value={budget}
+          on:focus={() => dispatch('focus', 'budget')}
+          on:blur={() => dispatch('blur', 'budget')}
+          on:change={() => dispatch('input', 'budget')}
+        >
+          <option value="" class="text-foreground">Select budget</option>
+          {#each budgetOptions as option}
+            <option value={option} class="text-foreground">{option}</option>
+          {/each}
+        </FloatingSelect>
+      {/if}
+      {#if type !== 'contact'}
+        <FileUpload
+          bind:files
+          on:focus={() => dispatch('focus', 'attachments')}
+          on:blur={() => dispatch('blur', 'attachments')}
+          on:change={() => dispatch('input', 'attachments')}
+          on:error={() =>
+            toast.error({
+              message: t('file.upload.error.title'),
+              description: t('file.upload.error.description')
+            })}
+          placeholder={type === 'quote' || type === 'estimations'
+            ? t('contact.label.attachment.quote')
+            : t('contact.label.attachment.position')}
+          size="lg"
+          getSignedUrl={async (file) => {
+            const res = await fetch(
+              `/get-signed-url?${new URLSearchParams({
+                name: file.name,
+                type: file.type,
+                size: file.size.toString()
+              }).toString()}`
+            );
+
+            return res.text();
+          }}
+        />
+        <input type="hidden" name="attachments" bind:value={attachments} />
+      {/if}
+      {#if disclaimer}
+        <p class="my-3 text-base text-foreground-secondary">{disclaimer}</p>
+        <hr />
+      {/if}
     </div>
-    {#if type === 'career'}
-      <FloatingSelect
-        name="position"
-        class="w-full"
-        label={t('contact.label.position')}
-        bind:value={position}
-        on:focus={() => dispatch('focus', 'position')}
-        on:blur={() => dispatch('blur', 'position')}
-      >
-        {#each careers as option}
-          <option value={option}>{option}</option>
-        {/each}
-      </FloatingSelect>
-    {/if}
-    <div>
-      <FloatingTextarea
-        required
-        error={!!$page.form?.error?.fields?.message}
-        name="message"
-        class="flex w-full"
-        label={t('contact.label.message')}
-        rows={5}
-        maxlength={2000}
-        bind:value={message}
-        on:focus={() => dispatch('focus', 'message')}
-        on:blur={() => dispatch('blur', 'message')}
-        on:input={() => dispatch('input', 'message')}
-      />
-      <p class="mt-2 text-right text-sm text-foreground-secondary">
-        {message.length}/2000
-      </p>
-    </div>
-
-    {#if type === 'quote' && budgetOptions}
-      <FloatingSelect
-        required
-        name="budget"
-        class="w-full"
-        label={t('contact.label.budget')}
-        bind:value={budget}
-        on:focus={() => dispatch('focus', 'budget')}
-        on:blur={() => dispatch('blur', 'budget')}
-        on:change={() => dispatch('input', 'budget')}
-      >
-        <option value="" class="text-foreground">Select budget</option>
-        {#each budgetOptions as option}
-          <option value={option} class="text-foreground">{option}</option>
-        {/each}
-      </FloatingSelect>
-    {/if}
-    {#if type !== 'contact'}
-      <FileUpload
-        bind:files
-        on:focus={() => dispatch('focus', 'attachments')}
-        on:blur={() => dispatch('blur', 'attachments')}
-        on:change={() => dispatch('input', 'attachments')}
-        on:error={() =>
-          toast.error({
-            message: t('file.upload.error.title'),
-            description: t('file.upload.error.description')
-          })}
-        placeholder={type === 'quote' || type === 'estimations'
-          ? t('contact.label.attachment.quote')
-          : t('contact.label.attachment.position')}
+    <div class="mt-8 flex flex-col justify-between gap-6 pb-1 sm:flex-row-reverse sm:items-center">
+      <Button
+        type="submit"
         size="lg"
-        getSignedUrl={async (file) => {
-          const res = await fetch(
-            `/get-signed-url?${new URLSearchParams({
-              name: file.name,
-              type: file.type,
-              size: file.size.toString()
-            }).toString()}`
-          );
-
-          return res.text();
-        }}
-      />
-      <input type="hidden" name="attachments" bind:value={attachments} />
-    {/if}
-    {#if disclaimer}
-      <p class="my-3 text-base text-foreground-secondary">{disclaimer}</p>
-      <hr />
-    {/if}
-  </div>
-  <div class="mt-8 flex flex-col justify-between gap-6 pb-1 sm:flex-row-reverse sm:items-center">
-    <Button
-      type="submit"
-      size="lg"
-      arrow
-      {loading}
-      disabled={loading || files.some((f) => f.status === 'uploading')}
-      >{t('contact.submit')}</Button
-    >
-    <div class="text-sm">
-      <p class="leading-none text-foreground-secondary">{t('contact.footer.title')}</p>
-      <Link class="mt-0.5 inline-flex" href="mailto:{t('contact.footer.email')}"
-        >{t('contact.footer.email')}</Link
+        arrow
+        {loading}
+        disabled={loading || files.some((f) => f.status === 'uploading')}
+        >{t('contact.submit')}</Button
       >
+      <div class="text-sm">
+        <p class="leading-none text-foreground-secondary">{t('contact.footer.title')}</p>
+        <Link class="mt-0.5 inline-flex" href="mailto:{t('contact.footer.email')}"
+          >{t('contact.footer.email')}</Link
+        >
+      </div>
     </div>
-  </div>
-</form>
+  </form>
 {/if}

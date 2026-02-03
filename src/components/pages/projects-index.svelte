@@ -111,13 +111,11 @@
     <ProjectEntry
       as="h2"
       {project}
-      variant={
-        !filters.length && i === 0
-          ? 'featured'
-          : !filters.length && i === 1
-            ? 'featured-reversed'
-            : 'default'
-      }
+      variant={!filters.length && i === 0
+        ? 'featured'
+        : !filters.length && i === 1
+          ? 'featured-reversed'
+          : 'default'}
     />
   {/each}
 </main>

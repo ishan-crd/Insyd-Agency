@@ -47,7 +47,11 @@
       posts.update((n) => [...n, ...res.data.stories]);
     }
 
-    total.set(res.total);
+    total.set(
+      (res as { total?: number; data?: { stories?: unknown[] } })?.total ??
+        (res?.data?.stories as unknown[])?.length ??
+        0
+    );
   };
 
   const getPageTitle = (tags: string[]): string => {

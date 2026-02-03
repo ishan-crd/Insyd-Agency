@@ -142,9 +142,7 @@ export function getImageAttributes(
 ): ImageAttributes {
   // External URLs or static paths: use as-is (for static mode / mock content)
   const isExternal =
-    image.filename.startsWith('http') ||
-    image.filename.startsWith('/') ||
-    image?.is_external_url;
+    image.filename.startsWith('http') || image.filename.startsWith('/') || image?.is_external_url;
   if (isExternal) {
     const [width, height] = options?.size ?? [0, 0];
     return {

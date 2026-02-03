@@ -34,9 +34,9 @@
     {/if}
   </div>
   <div
-    class="container grid place-items-center border-b px-container lg:max-w-none lg:border-none lg:px-0"
+    class="container grid place-items-center border-b px-container lg:max-w-none lg:border-none lg:px-0 lg:pb-0"
   >
-    <div class="py-14 lg:max-w-2xl lg:p-12">
+    <div class="py-14 lg:max-w-2xl lg:px-12 lg:pb-0 lg:pt-12">
       <h3 class="mb-6 text-5xl">
         <span class="text-foreground-secondary">{block.title1}</span> <br />
         {block.title2}

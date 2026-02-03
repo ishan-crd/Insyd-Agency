@@ -49,7 +49,8 @@
   >
     <div
       class={clsx(
-        (variant === 'featured' || variant === 'featured-reversed') && 'flex flex-1 flex-col justify-between',
+        (variant === 'featured' || variant === 'featured-reversed') &&
+          'flex flex-1 flex-col justify-between',
         variant === 'default' && 'flex flex-1 flex-col items-start justify-between'
       )}
     >

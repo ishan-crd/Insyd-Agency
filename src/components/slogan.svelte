@@ -10,7 +10,7 @@
   export let animate: undefined | boolean = undefined;
   const dispatch = createEventDispatcher<{ end: undefined }>();
 
-  let source: string[] = ['All', 'Your', 'IT', 'Solutions.', 'One Stop.'];
+  let source: string[] = ['All ', 'Your', 'IT', 'Solutions.', 'One Stop.'];
   let target: string[] = typeof animate === 'undefined' ? source : [];
 
   if (typeof animate === 'undefined') {
@@ -28,19 +28,19 @@
   }
 </script>
 
-<svelte:element this={as} class={twMerge('text-3xl font-medium', className)}>
+<svelte:element this={as} class={twMerge('text-center text-3xl font-medium', className)}>
   {#each source as word, i}
+    {#if i === 4}
+      <br />
+    {/if}
     <span
       style={target[i]
         ? 'opacity: 1; transform: translateY(0);'
         : 'opacity: 0; transform: translateY(1ch);'}
       class={clsx(
-        'mr-1 inline-block transition-all duration-500 ease-motion',
+        'mr-4 inline-block transition-all duration-500 ease-motion',
         i === source.length - 1 && 'text-[#EC4899]'
       )}>{word}</span
     >
-    {#if i % 2 === 1}
-      <br />
-    {/if}
   {/each}
 </svelte:element>

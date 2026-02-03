@@ -1,14 +1,15 @@
-import { exec } from 'child_process';
-import fs from 'fs';
-import * as dotenv from 'dotenv';
 import { apiPlugin, storyblokInit } from '@storyblok/js';
+import { exec } from 'child_process';
+import * as dotenv from 'dotenv';
+import fs from 'fs';
 
 dotenv.config();
 
 const PUBLIC_STORYBLOK_TOKEN = process.env.PUBLIC_STORYBLOK_TOKEN;
 
-if (!PUBLIC_STORYBLOK_TOKEN) {
-  throw new Error('Missing required env var: PUBLIC_STORYBLOK_TOKEN');
+if (!PUBLIC_STORYBLOK_TOKEN?.trim()) {
+  console.log('Skipping datasources (no PUBLIC_STORYBLOK_TOKEN)');
+  process.exit(0);
 }
 
 const { storyblokApi } = storyblokInit({
@@ -23,7 +24,11 @@ export const storyblok = storyblokApi as NonNullable<
   ReturnType<typeof storyblokInit>['storyblokApi']
 >;
 
-type Datasource = { name: string; value: string; dimension_value: string | null };
+type Datasource = {
+  name: string;
+  value: string;
+  dimension_value: string | null;
+};
 
 type Config = {
   outputDir: string;

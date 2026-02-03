@@ -21,12 +21,7 @@
 </script>
 
 <div class="container mx-auto px-container py-24 md:py-32 lg:py-40">
-  <Slogan
-    animate
-    on:end={() => (show = true)}
-    as="h1"
-    class="text-7xl font-bold"
-  />
+  <Slogan animate on:end={() => (show = true)} as="h1" class="text-7xl font-bold" />
 </div>
 
 <div
