@@ -304,7 +304,7 @@ export const MOCK_HOME_PAGE = {
       {
         _uid: uid(),
         component: 'projects',
-        work_title: 'Our Projects',
+        work_title: 'Our Work.',
         projects: PROJECTS
       },
       {
