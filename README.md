@@ -96,3 +96,4 @@ Since the software can only be offered over a network, the source code must be p
 
 We do not provide support for this project, and replication or rebranding is strongly discouraged.
 However, we encourage you to explore and take inspiration from how we built our website.
+# Insyd-Agency
