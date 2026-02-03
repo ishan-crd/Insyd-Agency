@@ -184,14 +184,14 @@ export const MOCK_CONFIGURATION: ISbStoryData<ConfigurationStoryblok> = {
 // ─── Shared physics blocks (interactive draggable section) ───────────────────
 
 const PHYSICS_DRAGGABLE_BLOCKS = [
-	{ _uid: uid(), component: 'physics-rectangle-card' as const, text: 'The chicken.', theme: 'transparent' as const, is_desktop_only: false },
-	{ _uid: uid(), component: 'physics-rectangle-card' as const, text: 'The Segg.', theme: 'transparent' as const, is_desktop_only: false },
+	{ _uid: uid(), component: 'physics-rectangle-card' as const, text: 'Insyd.', theme: 'transparent' as const, is_desktop_only: false },
+	{ _uid: uid(), component: 'physics-rectangle-card' as const, text: 'Womp Womp.', theme: 'transparent' as const, is_desktop_only: false },
 	{ _uid: uid(), component: 'physics-input' as const, placeholder: 'Try me...', is_desktop_only: false },
 	{ _uid: uid(), component: 'physics-rectangle-card' as const, text: 'Toss me.', theme: 'transparent' as const, is_desktop_only: false },
-	{ _uid: uid(), component: 'physics-balloon-card' as const, text: 'What came first?', theme: 'yellow' as const, is_desktop_only: false },
-	{ _uid: uid(), component: 'physics-balloon-card' as const, text: 'Eggceptional', theme: 'yellow' as const, is_desktop_only: false },
+	{ _uid: uid(), component: 'physics-balloon-card' as const, text: 'Get work done by us.', theme: 'yellow' as const, is_desktop_only: false },
+	{ _uid: uid(), component: 'physics-balloon-card' as const, text: 'Ishan Gupta', theme: 'yellow' as const, is_desktop_only: false },
 	{ _uid: uid(), component: 'physics-balloon-card' as const, text: 'Insyd', theme: 'yellow' as const, is_desktop_only: false },
-	{ _uid: uid(), component: 'physics-balloon-card' as const, text: 'What is meant by a word, text, concept, or action.', theme: 'yellow' as const, is_desktop_only: false },
+	{ _uid: uid(), component: 'physics-balloon-card' as const, text: 'This is the founder.', theme: 'yellow' as const, is_desktop_only: false },
 	{
 		_uid: uid(),
 		component: 'physics-sticker' as const,

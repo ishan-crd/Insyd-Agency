@@ -11,3 +11,32 @@
   --topnav-height: 76px;
   --topnav-handbook-mobile-height: 136px;
 }
+
+/* Override yellow accent (#ebbc00) with brand pink (#EC4899) */
+:root,
+.theme-light,
+[data-theme='light'] {
+  --color-foreground-accent: 328deg 81% 60%;
+  --color-border-active: 328deg 81% 60%;
+  --color-brand: 328deg 81% 60%;
+  --color-outline: 328deg 99% 73%;
+}
+
+.theme-dark,
+[data-theme='dark'] {
+  --color-foreground-accent: 328deg 81% 60%;
+  --color-border-active: 328deg 81% 50%;
+  --color-brand: 328deg 81% 60%;
+  --color-selection: 328deg 81% 60%;
+}
+
+.theme-yellow,
+[data-theme='yellow'] {
+  --color-background: 328deg 81% 60%;
+  --color-background-panel: 328deg 81% 52%;
+  --color-background-offset: 328deg 81% 55%;
+  --color-border: 328deg 81% 52%;
+  --color-border-active: 328deg 81% 48%;
+  --color-brand: 328deg 81% 60%;
+  --color-outline: 328deg 81% 45%;
+}
