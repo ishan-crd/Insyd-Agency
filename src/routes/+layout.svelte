@@ -6,20 +6,7 @@
   import PageDrawer from '$components/page-drawer.svelte';
   import { toast, Toaster, ToastNotification } from '@significa/svelte-ui';
   import { beforeNavigate } from '$app/navigation';
-  import { browser } from '$app/environment';
-
-  import { PUBLIC_POSTHOG_PROJECT_TOKEN } from '$env/static/public';
-  import posthog from 'posthog-js';
-
   import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
-
-  if (browser) {
-    posthog.init(PUBLIC_POSTHOG_PROJECT_TOKEN, {
-      api_host: 'https://eu.posthog.com',
-      persistence: 'localStorage',
-      person_profiles: 'always'
-    });
-  }
 
   beforeNavigate(() => {
     toast.clearAll();

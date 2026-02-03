@@ -17,5 +17,3 @@ static/sitemap.xml
 static/handbook/*
 handbook-data.json
 
-# 1password-secrets (cloned for local use)
-.1password-secrets/

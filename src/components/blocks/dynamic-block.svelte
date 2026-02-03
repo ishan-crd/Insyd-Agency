@@ -37,7 +37,6 @@
   import List from './list.svelte';
   import ContactUsForm from './contact-us-form.svelte';
   import OpenPositions from './open-positions.svelte';
-  import DrawSegg from './draw-segg.svelte';
   import Canvas from './canvas.svelte';
   import ProjectsTwoColumns from './projects-two-columns.svelte';
   import VerticalList from './vertical-list.svelte';
@@ -51,7 +50,6 @@
     'about-grid': AboutGrid,
     'awards-list': AwardsList,
     'awards-grid': AwardsGrid,
-    'draw-segg': DrawSegg,
     'blog-list': BlogList,
     image: Image,
     'careers-list': CareersList,
