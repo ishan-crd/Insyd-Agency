@@ -123,38 +123,74 @@
 </script>
 
 {#if isStaticMode}
-  <div class="space-y-4">
+  <form
+    class="space-y-4"
+    method="post"
+    action="/api/contact"
+    use:enhance={async ({ form, cancel }) => {
+      const formData = new FormData(form);
+      const res = await fetch('/api/contact', { method: 'POST', body: formData });
+      const data = await res.json();
+
+      if (data.ok) {
+        toast.success({
+          message: t('contact.feedback.success.title'),
+          description: t('contact.feedback.success.description'),
+          timeout: 8000
+        });
+        form.reset();
+      } else {
+        toast.error({
+          message: t('contact.feedback.error.title'),
+          description: data.error || t('contact.feedback.error.description'),
+          timeout: 0
+        });
+      }
+      cancel();
+    }}
+  >
     <div class="rounded-lg border border-border/50 bg-background/30 p-4 backdrop-blur-sm">
       <input
         type="text"
+        name="name"
         placeholder="Name"
-        disabled
+        required
         class="w-full rounded-lg border border-border/50 bg-transparent px-4 py-3 text-foreground placeholder:text-foreground-secondary/60"
       />
     </div>
     <div class="rounded-lg border border-border/50 bg-background/30 p-4 backdrop-blur-sm">
       <input
         type="email"
+        name="email"
         placeholder="Email"
-        disabled
+        required
         class="w-full rounded-lg border border-border/50 bg-transparent px-4 py-3 text-foreground placeholder:text-foreground-secondary/60"
       />
     </div>
     <div class="rounded-lg border border-border/50 bg-background/30 p-4 backdrop-blur-sm">
       <textarea
+        name="message"
         placeholder="Message"
-        disabled
+        required
         rows="4"
         class="w-full resize-none rounded-lg border border-border/50 bg-transparent px-4 py-3 text-foreground placeholder:text-foreground-secondary/60"
       ></textarea>
     </div>
-    <p class="text-center text-base text-foreground-secondary">
-      Contact us at
-      <a href="mailto:ishan@insyd.in" class="font-medium text-foreground underline"
-        >ishan@insyd.in</a
+    <div class="flex flex-col items-center gap-4">
+      <button
+        type="submit"
+        class="rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-background transition hover:opacity-90"
       >
-    </p>
-  </div>
+        {t('contact.submit')}
+      </button>
+      <p class="text-center text-base text-foreground-secondary">
+        Or contact us at
+        <a href="mailto:ishan@insyd.in" class="font-medium text-foreground underline"
+          >ishan@insyd.in</a
+        >
+      </p>
+    </div>
+  </form>
 {:else if variant === undefined}
   <div class="mb-8 border-b pb-8 @container">
     <p class="font-medium leading-none">{t('contact.type.title')}</p>
