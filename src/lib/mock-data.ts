@@ -181,6 +181,25 @@ export const MOCK_CONFIGURATION: ISbStoryData<ConfigurationStoryblok> = {
 	}
 };
 
+// ─── Shared physics blocks (interactive draggable section) ───────────────────
+
+const PHYSICS_DRAGGABLE_BLOCKS = [
+	{ _uid: uid(), component: 'physics-rectangle-card' as const, text: 'The chicken.', theme: 'transparent' as const, is_desktop_only: false },
+	{ _uid: uid(), component: 'physics-rectangle-card' as const, text: 'The Segg.', theme: 'transparent' as const, is_desktop_only: false },
+	{ _uid: uid(), component: 'physics-input' as const, placeholder: 'Try me...', is_desktop_only: false },
+	{ _uid: uid(), component: 'physics-rectangle-card' as const, text: 'Toss me.', theme: 'transparent' as const, is_desktop_only: false },
+	{ _uid: uid(), component: 'physics-balloon-card' as const, text: 'What came first?', theme: 'yellow' as const, is_desktop_only: false },
+	{ _uid: uid(), component: 'physics-balloon-card' as const, text: 'Eggceptional', theme: 'yellow' as const, is_desktop_only: false },
+	{ _uid: uid(), component: 'physics-balloon-card' as const, text: 'Insyd', theme: 'yellow' as const, is_desktop_only: false },
+	{ _uid: uid(), component: 'physics-balloon-card' as const, text: 'What is meant by a word, text, concept, or action.', theme: 'yellow' as const, is_desktop_only: false },
+	{
+		_uid: uid(),
+		component: 'physics-sticker' as const,
+		photo: { id: 1, filename: '/egg-chicken.webp', name: '', alt: 'Chicken and egg', focus: null, source: null, title: null, copyright: null },
+		is_desktop_only: false
+	}
+];
+
 // ─── Home page (uses blocks for layout) ─────────────────────────────────────
 
 export const MOCK_HOME_PAGE: ISbStoryData<PageStoryblok> = {
@@ -207,7 +226,26 @@ export const MOCK_HOME_PAGE: ISbStoryData<PageStoryblok> = {
 			},
 			{
 				_uid: uid(),
-				component: 'slogan'
+				component: 'newton',
+				title1: 'Our services.',
+				title2: 'Design-led digital products.',
+				description:
+					'There is no room for shortcuts when building a great digital experience. Everything starts with thorough research and iterative experimentation. No stone is left unturned to make data-minded decisions. Then we build from scratch, designing and developing, tailored to what users need.',
+				cta_label: 'Go to services →',
+				cta_link: { linktype: 'url', url: '/services', cached_url: '/services' }
+			},
+			{
+				_uid: uid(),
+				component: 'physics',
+				variant: 'hero',
+				hero_title: '',
+				physics_blocks: PHYSICS_DRAGGABLE_BLOCKS
+			},
+			{
+				_uid: uid(),
+				component: 'slogan',
+				heading: 'All Your IT Solutions.',
+				subheading: 'One Stop.'
 			},
 			{
 				_uid: uid(),
@@ -280,9 +318,13 @@ export const MOCK_SERVICES_PAGE: ISbStoryData<PageStoryblok> = {
 		blocks: [
 			{
 				_uid: uid(),
-				component: 'split-text',
-				title: 'What we do',
-				description: 'We help brands grow with strategy, design, and development. Edit src/lib/mock-data.ts to customize.'
+				component: 'newton',
+				title1: 'Our services.',
+				title2: 'Design-led digital products.',
+				description:
+					'There is no room for shortcuts when building a great digital experience. Everything starts with thorough research and iterative experimentation. No stone is left unturned to make data-minded decisions. Then we build from scratch, designing and developing, tailored to what users need.',
+				cta_label: 'Go to services →',
+				cta_link: { linktype: 'url', url: '/services', cached_url: '/services' }
 			}
 		]
 	}
@@ -325,6 +367,44 @@ export const MOCK_CAREERS_PAGE: ISbStoryData<PageStoryblok> = {
 		component: 'page',
 		page: [],
 		blocks: [
+			{
+				_uid: uid(),
+				component: 'physics',
+				variant: 'hero',
+				hero_title: '',
+				physics_blocks: PHYSICS_DRAGGABLE_BLOCKS
+			},
+			{
+				_uid: uid(),
+				component: 'about-grid',
+				about_links: [
+					{
+						_uid: uid(),
+						component: 'home-about-link',
+						title: 'Mission and values.',
+						description:
+							"It's not just what we do. It's the why and the how we go about doing things. That's what matters.",
+						link_label: 'Go to Mission →',
+						link: { linktype: 'url', url: '/careers', cached_url: '/careers', anchor: 'mission' }
+					},
+					{
+						_uid: uid(),
+						component: 'home-about-link',
+						title: 'Perks and benefits.',
+						description: "We love nice things. This is the good stuff. And it's getting bigger and bigger.",
+						link_label: 'Go to P&B →',
+						link: { linktype: 'url', url: '/careers', cached_url: '/careers', anchor: 'perks' }
+					},
+					{
+						_uid: uid(),
+						component: 'home-about-link',
+						title: 'Career plan.',
+						description: "Your goals, your career. We're here to help you grow. Together.",
+						link_label: 'Go to Career Plan →',
+						link: { linktype: 'url', url: '/careers', cached_url: '/careers', anchor: 'career' }
+					}
+				]
+			},
 			{
 				_uid: uid(),
 				component: 'careers-list',
