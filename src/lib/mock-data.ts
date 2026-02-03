@@ -1,6 +1,6 @@
 /**
  * Static mock content for running without Storyblok.
- * Customize this file to showcase your agency and projects.
+ * Edit this file to customize your agency website.
  */
 
 import type { ISbStoryData } from '@storyblok/js';
@@ -16,12 +16,30 @@ import type {
 
 const uid = () => `mock-${Math.random().toString(36).slice(2, 11)}`;
 
-// ─── Customize your agency info here ───────────────────────────────────────
+// ─── Helpers ────────────────────────────────────────────────────────────────
+
+function asset(filename: string, alt: string) {
+  return {
+    id: 1,
+    filename,
+    name: '',
+    alt,
+    focus: null,
+    source: null,
+    title: null,
+    copyright: null
+  };
+}
+
+const emptyRichtext = { type: 'doc', content: [] } as RichtextStoryblok;
+const emptyMultiasset = [] as MultiassetStoryblok;
+
+// ─── Agency ─────────────────────────────────────────────────────────────────
 
 export const AGENCY = {
-  name: 'Your Agency',
-  email: 'hello@youragency.com',
-  // Navigation links (slug, label)
+  name: 'Insyd',
+  email: 'ishan@insyd.in',
+  tagline: 'All Your IT Solutions. One Stop.',
   nav: [
     { full_slug: '/', name: 'Home' },
     { full_slug: '/about', name: 'About' },
@@ -29,11 +47,10 @@ export const AGENCY = {
     { full_slug: '/services', name: 'Services' },
     { full_slug: '/#promise', name: 'Promise' },
     { full_slug: '/contacts', name: 'Contact' }
-  ],
-  // Footer columns: { title, links: [{ name, full_slug }] or [{ label, link: { linktype, url } }] }
+  ] as const,
   footer: [
     {
-      component: 'footer-column-internal',
+      component: 'footer-column-internal' as const,
       _uid: uid(),
       title: 'Explore',
       links: [
@@ -45,7 +62,7 @@ export const AGENCY = {
       ]
     },
     {
-      component: 'footer-column-external',
+      component: 'footer-column-external' as const,
       _uid: uid(),
       title: 'Connect',
       links: [
@@ -53,7 +70,7 @@ export const AGENCY = {
           _uid: uid(),
           component: 'link',
           label: 'Email',
-          link: { linktype: 'email', email: 'hello@youragency.com' }
+          link: { linktype: 'email', email: 'ishan@insyd.in' }
         },
         {
           _uid: uid(),
@@ -63,20 +80,24 @@ export const AGENCY = {
         }
       ]
     }
-  ]
+  ] as (FooterColumnInternalStoryblok | FooterColumnExternalStoryblok)[]
 };
 
-// Award/recognition types – customize with your design awards
-const AWARD_LOGOS: { label: string; title: string; imageUrl?: string }[] = [
-  { label: 'AWARD', title: 'iF Design' },
-  { label: 'GOLD AWARD', title: 'German Design' },
-  { label: 'AWARD', title: 'Good Design' },
-  { label: 'GOLD AWARD', title: 'European Design' },
-  { label: 'AWARD', title: 'Red Dot' }
-];
+// ─── Projects ───────────────────────────────────────────────────────────────
 
-// Sample projects – add your own (services/deliverables used for project filters)
-// For "Selected work" style: add tagline, cover image URL, and link awards via MOCK_AWARDS
+const PROJECT_TEMPLATE = {
+  cover: asset(
+    'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80',
+    'Project'
+  ),
+  thumbnail: emptyMultiasset,
+  body: emptyRichtext,
+  services: [] as (number | string)[],
+  deliverables: [] as (number | string)[],
+  intro: '',
+  show_reel_controls: false
+};
+
 export const PROJECTS: Partial<ISbStoryData<ProjectStoryblok>>[] = [
   {
     id: 1,
@@ -89,26 +110,9 @@ export const PROJECTS: Partial<ISbStoryData<ProjectStoryblok>>[] = [
       component: 'project',
       title: 'Unmesa.',
       tagline: 'Productivity app to bring the best in you.',
-      subtitle: 'Productivity app to bring the best in you.',
-      intro: '',
-      show_reel_controls: false,
-      // Add your project cover/mockup image URL (e.g. from /static/ or external)
-      cover: {
-        id: 1,
-        filename: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80',
-        name: '',
-        alt: 'Dia app',
-        focus: null,
-        source: null,
-        title: null,
-        copyright: null
-      },
-      thumbnail: [] as MultiassetStoryblok,
-      body: { type: 'doc', content: [] } as RichtextStoryblok,
-      services: [] as (number | string)[],
-      deliverables: [],
-      seo_title: 'Dia.',
-      seo_description: 'An app to empower women in their fertility journey.'
+      seo_title: 'Unmesa.',
+      seo_description: 'Productivity app to bring the best in you.',
+      ...PROJECT_TEMPLATE
     }
   },
   {
@@ -122,34 +126,26 @@ export const PROJECTS: Partial<ISbStoryData<ProjectStoryblok>>[] = [
       component: 'project',
       title: 'Unmesa.',
       tagline: 'Productivity app to bring the best in you.',
-      subtitle: 'Productivity app to bring the best in you.',
-      intro: '',
-      show_reel_controls: false,
-      cover: {
-        id: 2,
-        filename: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80',
-        name: '',
-        alt: 'Unmesa app',
-        focus: null,
-        source: null,
-        title: null,
-        copyright: null
-      },
-      thumbnail: [] as MultiassetStoryblok,
-      body: { type: 'doc', content: [] } as RichtextStoryblok,
-      services: [] as (number | string)[],
-      deliverables: [],
       seo_title: 'Unmesa.',
-      seo_description: 'Productivity app to bring the best in you.'
+      seo_description: 'Productivity app to bring the best in you.',
+      ...PROJECT_TEMPLATE
     }
   }
 ];
 
-// Awards linked to projects (project id must match PROJECTS[].id)
-// These show as badges in the "Selected work" / featured project section
+// ─── Awards (shown on first project) ────────────────────────────────────────
+
+const AWARD_TYPES = [
+  { label: 'AWARD', title: 'iF Design' },
+  { label: 'GOLD AWARD', title: 'German Design' },
+  { label: 'AWARD', title: 'Good Design' },
+  { label: 'GOLD AWARD', title: 'European Design' },
+  { label: 'AWARD', title: 'Red Dot' }
+];
+
 const firstProject = PROJECTS[0];
 export const MOCK_AWARDS = firstProject
-  ? AWARD_LOGOS.map((a, i) => ({
+  ? AWARD_TYPES.map((a, i) => ({
       id: 100 + i,
       uuid: uid(),
       name: `${a.title}-${firstProject.name}`,
@@ -162,19 +158,7 @@ export const MOCK_AWARDS = firstProject
             _uid: uid(),
             component: 'recognition-type',
             label: a.label,
-            title: a.title,
-            image: a.imageUrl
-              ? {
-                  id: 1,
-                  filename: a.imageUrl,
-                  name: '',
-                  alt: null,
-                  focus: null,
-                  source: null,
-                  title: null,
-                  copyright: null
-                }
-              : undefined
+            title: a.title
           }
         },
         project: firstProject,
@@ -183,7 +167,48 @@ export const MOCK_AWARDS = firstProject
     }))
   : [];
 
-// ─── Configuration (nav, footer) ───────────────────────────────────────────
+// ─── Shared block content ───────────────────────────────────────────────────
+
+const SERVICES = {
+  title1: 'Our services.',
+  title2: 'Design-led digital products.',
+  description:
+    'There is no room for shortcuts when building a great digital experience. Everything starts with thorough research and iterative experimentation. No stone is left unturned to make data-minded decisions. Then we build from scratch, designing and developing, tailored to what users need.',
+  cta_label: 'Go to services →',
+  cta_link: { linktype: 'url', url: '/services', cached_url: '/services' }
+};
+
+const CONTACT = {
+  title1: 'Get in',
+  title2: 'touch.',
+  form_support_text: 'Contact us at ishan@insyd.in'
+};
+
+const PHYSICS_ITEMS = [
+  { component: 'physics-rectangle-card' as const, text: 'Insyd.', theme: 'transparent' as const },
+  {
+    component: 'physics-rectangle-card' as const,
+    text: 'Womp Womp.',
+    theme: 'transparent' as const
+  },
+  { component: 'physics-input' as const, placeholder: 'Try me...' },
+  { component: 'physics-rectangle-card' as const, text: 'Toss me.', theme: 'transparent' as const },
+  {
+    component: 'physics-balloon-card' as const,
+    text: 'Get work done by us.',
+    theme: 'yellow' as const
+  },
+  { component: 'physics-balloon-card' as const, text: 'Ishan Gupta', theme: 'yellow' as const },
+  { component: 'physics-balloon-card' as const, text: 'Insyd', theme: 'yellow' as const },
+  {
+    component: 'physics-balloon-card' as const,
+    text: 'This is the founder.',
+    theme: 'yellow' as const
+  },
+  { component: 'physics-sticker' as const, photo: asset('/egg-chicken.webp', 'Chicken and egg') }
+];
+
+// ─── Configuration ──────────────────────────────────────────────────────────
 
 export const MOCK_CONFIGURATION = {
   id: 0,
@@ -203,87 +228,23 @@ export const MOCK_CONFIGURATION = {
         link: { linktype: 'url', cached_url: '/contacts' }
       }
     ],
-    footer: AGENCY.footer as (FooterColumnInternalStoryblok | FooterColumnExternalStoryblok)[],
+    footer: AGENCY.footer,
     footer_partners: []
   }
 } as unknown as ISbStoryData<ConfigurationStoryblok>;
 
-// ─── Shared physics blocks (interactive draggable section) ───────────────────
+// ─── Pages ──────────────────────────────────────────────────────────────────
 
-const PHYSICS_DRAGGABLE_BLOCKS = [
-  {
-    _uid: uid(),
-    component: 'physics-rectangle-card' as const,
-    text: 'Insyd.',
-    theme: 'transparent' as const,
-    is_desktop_only: false
-  },
-  {
-    _uid: uid(),
-    component: 'physics-rectangle-card' as const,
-    text: 'Womp Womp.',
-    theme: 'transparent' as const,
-    is_desktop_only: false
-  },
-  {
-    _uid: uid(),
-    component: 'physics-input' as const,
-    placeholder: 'Try me...',
-    is_desktop_only: false
-  },
-  {
-    _uid: uid(),
-    component: 'physics-rectangle-card' as const,
-    text: 'Toss me.',
-    theme: 'transparent' as const,
-    is_desktop_only: false
-  },
-  {
-    _uid: uid(),
-    component: 'physics-balloon-card' as const,
-    text: 'Get work done by us.',
-    theme: 'yellow' as const,
-    is_desktop_only: false
-  },
-  {
-    _uid: uid(),
-    component: 'physics-balloon-card' as const,
-    text: 'Ishan Gupta',
-    theme: 'yellow' as const,
-    is_desktop_only: false
-  },
-  {
-    _uid: uid(),
-    component: 'physics-balloon-card' as const,
-    text: 'Insyd',
-    theme: 'yellow' as const,
-    is_desktop_only: false
-  },
-  {
-    _uid: uid(),
-    component: 'physics-balloon-card' as const,
-    text: 'This is the founder.',
-    theme: 'yellow' as const,
-    is_desktop_only: false
-  },
-  {
-    _uid: uid(),
-    component: 'physics-sticker' as const,
-    photo: {
-      id: 1,
-      filename: '/egg-chicken.webp',
-      name: '',
-      alt: 'Chicken and egg',
-      focus: null,
-      source: null,
-      title: null,
-      copyright: null
-    },
-    is_desktop_only: false
+function physicsBlock(item: (typeof PHYSICS_ITEMS)[number]) {
+  const base = { _uid: uid(), is_desktop_only: false };
+  if (item.component === 'physics-input') {
+    return { ...base, component: item.component, placeholder: item.placeholder };
   }
-];
-
-// ─── Home page (uses blocks for layout) ─────────────────────────────────────
+  if (item.component === 'physics-sticker') {
+    return { ...base, component: item.component, photo: item.photo };
+  }
+  return { ...base, component: item.component, text: item.text, theme: item.theme };
+}
 
 export const MOCK_HOME_PAGE = {
   id: 1,
@@ -296,52 +257,22 @@ export const MOCK_HOME_PAGE = {
     component: 'page',
     page: [],
     blocks: [
-      {
-        _uid: uid(),
-        component: 'hero',
-        small_highlights: PROJECTS.slice(0, 2)
-      },
-      {
-        _uid: uid(),
-        component: 'projects',
-        work_title: 'Our Work.',
-        projects: PROJECTS
-      },
-      {
-        _uid: uid(),
-        component: 'newton',
-        title1: 'Our services.',
-        title2: 'Design-led digital products.',
-        description:
-          'There is no room for shortcuts when building a great digital experience. Everything starts with thorough research and iterative experimentation. No stone is left unturned to make data-minded decisions. Then we build from scratch, designing and developing, tailored to what users need.',
-        cta_label: 'Go to services →',
-        cta_link: {
-          linktype: 'url',
-          url: '/services',
-          cached_url: '/services'
-        }
-      },
+      { _uid: uid(), component: 'hero', small_highlights: PROJECTS.slice(0, 2) },
+      { _uid: uid(), component: 'projects', work_title: 'Our Work.', projects: PROJECTS },
+      { _uid: uid(), component: 'newton', ...SERVICES },
       {
         _uid: uid(),
         component: 'physics',
         variant: 'hero',
         hero_title: "I Promise We'll Make it Worth It",
         overlay_subheading: '-Ishan Gupta, Founder',
-        physics_blocks: PHYSICS_DRAGGABLE_BLOCKS,
+        physics_blocks: PHYSICS_ITEMS.map(physicsBlock),
         section_id: 'promise'
       },
-      {
-        _uid: uid(),
-        component: 'contact-us-form',
-        title1: 'Get in',
-        title2: 'touch.',
-        form_support_text: 'Contact us at ishan@insyd.in'
-      }
+      { _uid: uid(), component: 'contact-us-form', ...CONTACT }
     ]
   }
-};
-
-// ─── About page ────────────────────────────────────────────────────────────
+} as unknown as ISbStoryData<PageStoryblok>;
 
 export const MOCK_ABOUT_PAGE = {
   id: 2,
@@ -357,7 +288,7 @@ export const MOCK_ABOUT_PAGE = {
       {
         _uid: uid(),
         component: 'split-text',
-        title: 'We are ' + AGENCY.name,
+        title: `We are ${AGENCY.name}`,
         description:
           'A creative agency focused on building great digital experiences. Edit src/lib/mock-data.ts to tell your story.',
         has_border_top: true
@@ -373,8 +304,6 @@ export const MOCK_ABOUT_PAGE = {
   }
 } as unknown as ISbStoryData<PageStoryblok>;
 
-// ─── Projects index ────────────────────────────────────────────────────────
-
 export const MOCK_PROJECTS_PAGE = {
   id: 3,
   uuid: uid(),
@@ -389,8 +318,6 @@ export const MOCK_PROJECTS_PAGE = {
   }
 } as unknown as ISbStoryData<PageStoryblok>;
 
-// ─── Services page ─────────────────────────────────────────────────────────
-
 export const MOCK_SERVICES_PAGE = {
   id: 4,
   uuid: uid(),
@@ -401,26 +328,9 @@ export const MOCK_SERVICES_PAGE = {
     _uid: uid(),
     component: 'page',
     page: [],
-    blocks: [
-      {
-        _uid: uid(),
-        component: 'newton',
-        title1: 'Our services.',
-        title2: 'Design-led digital products.',
-        description:
-          'There is no room for shortcuts when building a great digital experience. Everything starts with thorough research and iterative experimentation. No stone is left unturned to make data-minded decisions. Then we build from scratch, designing and developing, tailored to what users need.',
-        cta_label: 'Go to services →',
-        cta_link: {
-          linktype: 'url',
-          url: '/services',
-          cached_url: '/services'
-        }
-      }
-    ]
+    blocks: [{ _uid: uid(), component: 'newton', ...SERVICES }]
   }
 } as unknown as ISbStoryData<PageStoryblok>;
-
-// ─── Contact page ──────────────────────────────────────────────────────────
 
 export const MOCK_CONTACTS_PAGE = {
   id: 5,
@@ -432,19 +342,9 @@ export const MOCK_CONTACTS_PAGE = {
     _uid: uid(),
     component: 'page',
     page: [],
-    blocks: [
-      {
-        _uid: uid(),
-        component: 'contact-us-form',
-        title1: 'Get in',
-        title2: 'touch',
-        form_support_text: 'Contact us at ishan@insyd.in'
-      }
-    ]
+    blocks: [{ _uid: uid(), component: 'contact-us-form', ...CONTACT }]
   }
 } as unknown as ISbStoryData<PageStoryblok>;
-
-// ─── Blog index ────────────────────────────────────────────────────────────
 
 export const MOCK_BLOG_PAGE = {
   id: 7,
@@ -456,11 +356,11 @@ export const MOCK_BLOG_PAGE = {
     _uid: uid(),
     component: 'page',
     page: [{ _uid: uid(), component: 'blog-index' }],
-    blocks: [] // blog-index uses page array, need blogIndex from fetch
+    blocks: []
   }
 } as unknown as ISbStoryData<PageStoryblok>;
 
-// ─── Page slug → story map ────────────────────────────────────────────────
+// ─── Slug → Story map ───────────────────────────────────────────────────────
 
 export const MOCK_PAGES = {
   '': MOCK_HOME_PAGE,
