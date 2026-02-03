@@ -29,15 +29,18 @@ export const POST: RequestHandler = async ({ request }) => {
 
   const resend = new Resend(apiKey);
 
+  const escapedMessage = message.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  // 1. Email to Insyd
   const { data, error } = await resend.emails.send({
-    from: 'Insyd Website <onboarding@resend.dev>',
+    from: 'Insyd <ishan@insyd.in>',
     to: [TO_EMAIL],
     replyTo: email,
     subject: `Contact from ${name} (${email})`,
     html: `
       <p><strong>From:</strong> ${name} &lt;${email}&gt;</p>
       <p><strong>Message:</strong></p>
-      <pre style="white-space: pre-wrap; font-family: inherit;">${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>
+      <pre style="white-space: pre-wrap; font-family: inherit;">${escapedMessage}</pre>
     `
   });
 
@@ -45,6 +48,22 @@ export const POST: RequestHandler = async ({ request }) => {
     console.error('Resend error:', error);
     return json({ ok: false, error: 'Failed to send email' }, { status: 500 });
   }
+
+  // 2. Confirmation email to the person who submitted
+  await resend.emails
+    .send({
+      from: 'Insyd Website <ishan@insyd.in>',
+      to: [email],
+      subject: "We've received your message – Insyd",
+      html: `
+      <p>Hi ${name.replace(/</g, '&lt;').replace(/>/g, '&gt;')},</p>
+      <p>Thank you for reaching out! We've received your message and will get back to you soon.</p>
+      <p><strong>Your message:</strong></p>
+      <pre style="white-space: pre-wrap; font-family: inherit; background: #f5f5f5; padding: 1rem; border-radius: 0.5rem;">${escapedMessage}</pre>
+      <p>Best regards,<br />The Insyd Team</p>
+    `
+    })
+    .catch((err) => console.error('Failed to send confirmation email:', err));
 
   return json({ ok: true, id: data?.id });
 };
