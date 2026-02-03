@@ -42,11 +42,8 @@ export const AGENCY = {
   tagline: 'All Your IT Solutions. One Stop.',
   nav: [
     { full_slug: '/', name: 'Home' },
-    { full_slug: '/about', name: 'About' },
     { full_slug: '/projects', name: 'Projects' },
-    { full_slug: '/services', name: 'Services' },
-    { full_slug: '/#promise', name: 'Promise' },
-    { full_slug: '/contacts', name: 'Contact' }
+    { full_slug: '/services', name: 'Services' }
   ] as const,
   footer: [
     {
