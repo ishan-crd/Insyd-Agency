@@ -52,7 +52,7 @@ export const POST: RequestHandler = async ({ request }) => {
   // 2. Confirmation email to the person who submitted
   await resend.emails
     .send({
-      from: 'Insyd Website <ishan@insyd.in>',
+      from: 'Insyd <ishan@insyd.in>',
       to: [email],
       subject: "We've received your message – Insyd",
       html: `
