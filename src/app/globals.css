@@ -1168,6 +1168,23 @@ button {
 	letter-spacing: -0.05em;
 }
 
+/* Project images */
+.proj-image-frame {
+	position: relative;
+}
+.proj-image-frame img {
+	display: block;
+	object-fit: cover;
+	background: var(--surface);
+}
+.proj-image-label {
+	margin-top: 12px;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--muted);
+}
+
 /* KPI row */
 .kpi-row {
 	display: grid;

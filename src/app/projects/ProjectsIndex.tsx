@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { PROJECTS } from "@/data/projects";
@@ -100,7 +101,27 @@ export default function ProjectsIndex() {
 										{p.tagline}
 									</div>
 								</div>
-								<div className="proj-card__glyph">{p.name[0]}</div>
+								{p.images[0] ? (
+									<Image
+										src={p.images[0]}
+										alt={p.name}
+										width={600}
+										height={400}
+										className="proj-card__image"
+										style={{
+											position: "absolute",
+											bottom: 0,
+											right: 0,
+											width: "60%",
+											height: "auto",
+											objectFit: "contain",
+											opacity: 0.25,
+											zIndex: 1,
+										}}
+									/>
+								) : (
+									<div className="proj-card__glyph">{p.name[0]}</div>
+								)}
 							</div>
 							<div className="proj-card__body">
 								<div

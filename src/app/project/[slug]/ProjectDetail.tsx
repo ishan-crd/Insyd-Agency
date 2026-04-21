@@ -1,40 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { OrbScene } from "@/components/Scene3D";
 import type { CaseStudyContent, Project } from "@/data/projects";
-
-function ProjectScreen({
-	screen,
-	accent,
-}: {
-	screen: { label: string; variant: string; title: string };
-	accent: string;
-}) {
-	const variantClass =
-		screen.variant === "dark"
-			? "screen-placeholder--dark"
-			: screen.variant === "ink"
-				? "screen-placeholder--ink"
-				: "";
-	const bg = screen.variant === "primary" ? accent : undefined;
-
-	return (
-		<div
-			className={`screen-placeholder ${variantClass}`}
-			style={bg ? { background: bg } : {}}
-		>
-			<div className="screen-placeholder__label">{screen.label}</div>
-			<div
-				className="screen-placeholder__title"
-				style={{ whiteSpace: "pre-line" }}
-			>
-				{screen.title}
-			</div>
-			<div className="screen-placeholder__glyph">{screen.label[0]}</div>
-		</div>
-	);
-}
 
 export default function ProjectDetail({
 	project,
@@ -81,6 +50,29 @@ export default function ProjectDetail({
 							<span className="proj-specs__val">{project.duration}</span>
 						</div>
 					</div>
+					<div className="proj-specs" style={{ marginTop: 16 }}>
+						<div className="proj-specs__cell">
+							<span className="proj-specs__label">Tech</span>
+							<span className="proj-specs__val">
+								{project.tech.join(" · ")}
+							</span>
+						</div>
+						{project.liveUrl && (
+							<div className="proj-specs__cell">
+								<span className="proj-specs__label">Live</span>
+								<a
+									href={project.liveUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="proj-specs__val"
+									data-cursor="link"
+									style={{ textDecoration: "underline", textUnderlineOffset: 4 }}
+								>
+									Visit site →
+								</a>
+							</div>
+						)}
+					</div>
 				</div>
 			</section>
 
@@ -91,7 +83,7 @@ export default function ProjectDetail({
 						<h2 className="proj-block__title display">
 							The problem
 							<br />
-							they arrived with.
+							we started with.
 						</h2>
 					</div>
 					<p
@@ -106,11 +98,28 @@ export default function ProjectDetail({
 				</div>
 			</section>
 
-			<section style={{ padding: "60px 0" }}>
-				<div className="container">
-					<ProjectScreen screen={content.screens[0]} accent={project.color} />
-				</div>
-			</section>
+			{content.screens[0] && (
+				<section style={{ padding: "60px 0" }}>
+					<div className="container">
+						<div className="proj-image-frame">
+							<Image
+								src={content.screens[0].src}
+								alt={content.screens[0].label}
+								width={1400}
+								height={800}
+								style={{
+									width: "100%",
+									height: "auto",
+									borderRadius: 12,
+								}}
+							/>
+							<div className="proj-image-label mono">
+								{content.screens[0].label}
+							</div>
+						</div>
+					</div>
+				</section>
+			)}
 
 			<section className="proj-block">
 				<div className="container">
@@ -131,19 +140,36 @@ export default function ProjectDetail({
 				</div>
 			</section>
 
-			<section style={{ padding: "40px 0" }}>
-				<div
-					className="container"
-					style={{
-						display: "grid",
-						gridTemplateColumns: "1fr 1fr",
-						gap: 32,
-					}}
-				>
-					<ProjectScreen screen={content.screens[1]} accent={project.color} />
-					<ProjectScreen screen={content.screens[2]} accent={project.color} />
-				</div>
-			</section>
+			{content.screens.length > 1 && (
+				<section style={{ padding: "40px 0" }}>
+					<div
+						className="container"
+						style={{
+							display: "grid",
+							gridTemplateColumns:
+								content.screens.length > 2 ? "1fr 1fr" : "1fr",
+							gap: 32,
+						}}
+					>
+						{content.screens.slice(1, 3).map((screen) => (
+							<div key={screen.label} className="proj-image-frame">
+								<Image
+									src={screen.src}
+									alt={screen.label}
+									width={700}
+									height={440}
+									style={{
+										width: "100%",
+										height: "auto",
+										borderRadius: 12,
+									}}
+								/>
+								<div className="proj-image-label mono">{screen.label}</div>
+							</div>
+						))}
+					</div>
+				</section>
+			)}
 
 			<section className="proj-block">
 				<div className="container">

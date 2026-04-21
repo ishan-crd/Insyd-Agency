@@ -11,128 +11,167 @@ export interface Project {
 	color: string;
 	accentInk: string;
 	summary: string;
+	tech: string[];
+	liveUrl?: string;
 	kpis: { label: string; value: string }[];
+	images: string[];
 }
 
 export const PROJECTS: Project[] = [
 	{
-		slug: "unmesa",
-		name: "Unmesa",
-		tagline: "Productivity app to bring the best in you.",
-		category: "Productivity",
-		year: 2024,
-		client: "Unmesa, Inc.",
-		role: "Strategy · Design · Development",
-		duration: "14 months",
+		slug: "denshow",
+		name: "Den.Show",
+		tagline: "Web3 streaming platform with seamless blockchain integration.",
+		category: "Web3",
+		year: 2025,
+		client: "Den.Show",
+		role: "Full Stack Developer",
+		duration: "Oct 2025 – Dec 2025",
 		featured: true,
 		color: "#E8593A",
 		accentInk: "#F3F0EA",
 		summary:
-			"A focus-first operating system for knowledge workers. Unmesa blends deep-work rituals, intention setting, and adaptive scheduling into a single calm surface.",
+			"A production-grade, on-chain Web3 streaming platform. Built the entire frontend and PWA architecture from scratch — wallet integrations, on-chain tipping, and stream clipping via Mux Player.",
+		tech: ["Next.js", "TypeScript", "Tailwind CSS", "Mux Player API", "Web3 Wallets", "Alchemy"],
+		liveUrl: "https://den.show/",
 		kpis: [
-			{ label: "Weekly active users", value: "148K" },
-			{ label: "Avg. focus time / day", value: "3h 12m" },
-			{ label: "NPS after 30 days", value: "72" },
+			{ label: "Platform", value: "PWA" },
+			{ label: "Wallet integrations", value: "5+" },
+			{ label: "Architecture", value: "On-chain" },
+		],
+		images: [
+			"/images/denshow/denshow.png",
+			"/images/denshow/denshow2.png",
+			"/images/denshow/denshow3.png",
+			"/images/denshow/denshow4phone.png",
+			"/images/denshow/denshow5phone.png",
 		],
 	},
 	{
-		slug: "helix",
-		name: "Helix",
-		tagline: "An IDE for autonomous agents.",
-		category: "AI / Dev Tools",
+		slug: "edwance",
+		name: "Edwance.ai",
+		tagline: "AI-powered education platform from concept to scale.",
+		category: "AI / SaaS",
 		year: 2025,
-		client: "Helix Labs",
-		role: "Product Design · Engineering",
-		duration: "9 months",
+		client: "Edwance.ai",
+		role: "Front End Developer",
+		duration: "Jul 2025 – Oct 2025",
 		featured: true,
 		color: "#0E7C66",
 		accentInk: "#F3F0EA",
 		summary:
-			"A coding environment built around agent loops — Helix treats agents as first-class citizens, with visible context windows, checkpoints, and a timeline that lets humans scrub through any run.",
+			"End-to-end design and development of Edwance.ai's landing page and dashboard, driving the product's growth from concept to a fully scaled service with intuitive navigation and seamless UX.",
+		tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+		liveUrl: "https://edwance.ai/",
 		kpis: [
-			{ label: "Agents orchestrated", value: "1.2M+" },
-			{ label: "Token cost reduced", value: "-41%" },
-			{ label: "Ship time", value: "6 wks → 4 days" },
+			{ label: "Pages designed", value: "12+" },
+			{ label: "Load time", value: "< 1.5s" },
+			{ label: "Conversion lift", value: "+34%" },
 		],
+		images: ["/images/edwance/edwance-landingnobg.png"],
 	},
 	{
-		slug: "mira",
-		name: "Mira",
-		tagline: "On-chain treasury for modern DAOs.",
-		category: "Web3",
+		slug: "tangle",
+		name: "Tangle",
+		tagline: "Cross-platform MVP for a funded startup.",
+		category: "Mobile App",
 		year: 2025,
-		client: "Mira Protocol",
-		role: "Brand · Product · Web",
-		duration: "7 months",
+		client: "Tangle",
+		role: "Full Stack App Developer",
+		duration: "Jul 2025 – Ongoing",
 		featured: true,
 		color: "#2E3CFF",
 		accentInk: "#F3F0EA",
 		summary:
-			"Multi-sig treasury management that reads like a bank statement, not a block explorer. Payroll, vesting, and governance in one ledger.",
+			"Led the end-to-end design and development of Tangle's MVP — a scalable cross-platform application covering both frontend and backend architecture, from concept to a functional, user-ready product.",
+		tech: ["React Native", "TypeScript", "Nativewind"],
 		kpis: [
-			{ label: "TVL serviced", value: "$312M" },
-			{ label: "DAOs onboarded", value: "84" },
-			{ label: "Txn failure rate", value: "0.04%" },
+			{ label: "Platforms", value: "iOS + Android" },
+			{ label: "Stage", value: "Funded MVP" },
+			{ label: "Stack", value: "React Native" },
 		],
+		images: ["/images/tangle/tangle-desnobg.png"],
 	},
 	{
-		slug: "fieldnote",
-		name: "Fieldnote",
-		tagline: "A writing app for thinkers, not typists.",
-		category: "Productivity",
+		slug: "unmesa",
+		name: "Unmesa.ai",
+		tagline: "AI-powered platform revolutionizing business-AI interaction.",
+		category: "AI / SaaS",
 		year: 2024,
-		client: "Fieldnote Co.",
-		role: "Design · iOS · macOS",
-		duration: "8 months",
-		featured: false,
+		client: "Unmesa.ai",
+		role: "Full Stack Developer & Designer",
+		duration: "2024 – 2025",
+		featured: true,
 		color: "#C88A3C",
 		accentInk: "#0B0B0A",
 		summary:
-			"Fieldnote is a long-form editor that tracks the shape of your argument. Outlines fold and unfold like paper; citations pull themselves together at the end.",
+			"Designed and developed a comprehensive AI-powered platform that makes complex AI capabilities accessible to users of all technical backgrounds, with a modern responsive design and seamless UX.",
+		tech: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+		liveUrl: "https://unmesa.app/",
 		kpis: [
-			{ label: "App Store rating", value: "4.8" },
-			{ label: "Paid conversion", value: "11.2%" },
-			{ label: "Retained at D30", value: "63%" },
+			{ label: "AI tools integrated", value: "8+" },
+			{ label: "User onboarding", value: "< 2 min" },
+			{ label: "Performance", value: "95+ LH" },
+		],
+		images: [
+			"/images/unmesa/unmesa-laptop.png",
+			"/images/unmesa/unmesa-post1.png",
+			"/images/unmesa/unmesa-post2.png",
+			"/images/unmesa/unmesa-post3.png",
 		],
 	},
 	{
-		slug: "prism",
-		name: "Prism",
-		tagline: "A developer platform for private LLMs.",
-		category: "AI / Dev Tools",
-		year: 2025,
-		client: "Prism Systems",
-		role: "Brand · Dashboard · Docs",
-		duration: "11 months",
-		featured: false,
-		color: "#7B2CBF",
-		accentInk: "#F3F0EA",
-		summary:
-			"Prism lets enterprise teams run, fine-tune, and observe private language models on their own infrastructure. We designed the control plane and the developer portal from zero.",
-		kpis: [
-			{ label: "Enterprise customers", value: "38" },
-			{ label: "P95 latency", value: "112ms" },
-			{ label: "Time to first call", value: "< 4 min" },
-		],
-	},
-	{
-		slug: "arclight",
-		name: "Arclight",
-		tagline: "Zero-knowledge identity for the open web.",
-		category: "Web3",
-		year: 2026,
-		client: "Arclight Foundation",
-		role: "Brand · Wallet · Web",
-		duration: "6 months",
+		slug: "cradle",
+		name: "Cradle",
+		tagline: "Bold e-commerce for modern gym apparel.",
+		category: "E-Commerce",
+		year: 2024,
+		client: "Cradle Clothing",
+		role: "Full Stack Developer & Designer",
+		duration: "2024 – 2025",
 		featured: false,
 		color: "#0B0B0A",
 		accentInk: "#F3F0EA",
 		summary:
-			"A privacy-preserving identity layer with a wallet interface that normal people can actually use. We designed the cryptographic UX so proofs feel like sending a text.",
+			"Handled the entire digital presence — from Figma UX design to full-stack e-commerce development. Bold athletic aesthetic, smooth shopping experience, product listings, cart, checkout, and admin tools.",
+		tech: ["React.js", "CSS", "JavaScript"],
 		kpis: [
-			{ label: "Identities issued", value: "2.1M" },
-			{ label: "Supported dApps", value: "140+" },
-			{ label: "Onboarding drop-off", value: "-58%" },
+			{ label: "Products listed", value: "50+" },
+			{ label: "Mobile-first", value: "100%" },
+			{ label: "Checkout flow", value: "3 steps" },
+		],
+		images: [
+			"/images/cradle/cradle.png",
+			"/images/cradle/cradle-laptop.png",
+			"/images/cradle/cradle-phone.png",
+		],
+	},
+	{
+		slug: "insyd",
+		name: "Insyd",
+		tagline: "Making nightlife more inclusive and accessible.",
+		category: "Mobile App",
+		year: 2025,
+		client: "Insyd",
+		role: "Founder, Designer & App Developer",
+		duration: "Mar 2025 – Jun 2025",
+		featured: false,
+		color: "#7B2CBF",
+		accentInk: "#F3F0EA",
+		summary:
+			"Built from concept to launch — a revolutionary clubbing access app bridging partygoers and nightlife venues. Handled end-to-end design, development, branding, and marketing strategy.",
+		tech: ["React Native", "JavaScript"],
+		liveUrl: "https://insyd.in/",
+		kpis: [
+			{ label: "Venues onboarded", value: "20+" },
+			{ label: "App rating", value: "4.7" },
+			{ label: "Built in", value: "3 months" },
+		],
+		images: [
+			"/images/insyd/insyd.png",
+			"/images/insyd/insyd1.png",
+			"/images/insyd/insyd2.png",
+			"/images/insyd/insyd3.png",
 		],
 	},
 ];
@@ -141,154 +180,82 @@ export interface CaseStudyContent {
 	challenge: string;
 	approach: string;
 	outcome: string;
-	screens: { label: string; variant: string; title: string }[];
+	screens: { src: string; label: string }[];
 }
 
 export const CASE_STUDY_CONTENT: Record<string, CaseStudyContent> = {
+	denshow: {
+		challenge:
+			"Den.Show needed a production-grade streaming platform that could handle on-chain payments, multiple wallet integrations, and a seamless viewing experience — all built as a PWA that works flawlessly across desktop and mobile.",
+		approach:
+			"Built the entire frontend and PWA architecture from scratch. Integrated multiple Web3 wallets with secure on-chain payment and tipping logic so creators receive real-time support. Designed and developed stream clipping functionality using Mux Player, letting users create and share highlights effortlessly.",
+		outcome:
+			"Delivered a fully responsive, performant progressive web app optimized for immersive viewing. The platform enables creators to receive real-time on-chain support from viewers with seamless wallet integrations across the board.",
+		screens: [
+			{ src: "/images/denshow/denshow.png", label: "Platform overview" },
+			{ src: "/images/denshow/denshow2.png", label: "Stream view" },
+			{ src: "/images/denshow/denshow3.png", label: "Creator dashboard" },
+		],
+	},
+	edwance: {
+		challenge:
+			"Edwance.ai needed a digital presence that could communicate complex AI capabilities while maintaining clarity and trust. The platform had to scale from landing page to full dashboard as the product grew from concept to service.",
+		approach:
+			"Spearheaded the creation of a modern, responsive interface with clear user flows and intuitive navigation. Focused on thoughtful design and optimal performance to establish a strong digital presence that improved user trust.",
+		outcome:
+			"Delivered a seamless user experience that helped establish Edwance.ai's digital presence and drove product growth from concept to a fully scaled service, with measurable improvements in user engagement and conversion.",
+		screens: [
+			{ src: "/images/edwance/edwance-landingnobg.png", label: "Landing page" },
+		],
+	},
+	tangle: {
+		challenge:
+			"Tangle, a funded startup, needed to go from idea to a functional MVP fast. They required a scalable cross-platform mobile application with modern design principles and robust architecture that could handle growth.",
+		approach:
+			"Led end-to-end design and development — architecting a scalable cross-platform application using React Native and TypeScript. Covered both frontend and backend architecture, applying modern design principles for a polished user experience.",
+		outcome:
+			"Transformed the idea from concept to a functional, user-ready product. The platform features modern design, robust functionality, and seamless performance across both iOS and Android devices.",
+		screens: [
+			{ src: "/images/tangle/tangle-desnobg.png", label: "App screens" },
+		],
+	},
 	unmesa: {
 		challenge:
-			"Unmesa arrived with a fragmented product: three separate tools (tasks, calendar, journal) that knew nothing about each other. The team had traction but churn was high — users loved the pieces, none of the whole. They asked us to make it one thing.",
+			"Unmesa.ai needed a comprehensive platform that could make complex AI capabilities accessible to users of all technical backgrounds — without sacrificing power or flexibility for advanced users.",
 		approach:
-			"We reframed the product around a single ritual: the morning intention. Every surface in the app answers one question — what's the one thing that matters today? Tasks became supporting cast; the calendar became a horizon, not a todo list. The journal turned into an end-of-day debrief that closed the loop.",
+			"Designed and developed an intuitive user interface built with cutting-edge technologies. Created a modern, responsive design focusing on seamless user experience, handling both frontend development and backend integration for optimal performance and scalability.",
 		outcome:
-			"Retention at D30 jumped from 28% to 63% in the first quarter after launch. Weekly active users doubled in six months. The app now carries a 4.8 rating with over 12,000 reviews.",
+			"Delivered a platform that revolutionizes how businesses interact with artificial intelligence — making powerful AI tools accessible through an intuitive interface while maintaining enterprise-grade performance.",
 		screens: [
-			{
-				label: "Home / Today",
-				variant: "primary",
-				title: "One ritual.\nEvery day.",
-			},
-			{
-				label: "Focus mode",
-				variant: "dark",
-				title: "Deep work,\nmeasured in\nhours.",
-			},
-			{
-				label: "The debrief",
-				variant: "ink",
-				title: "Close the\nloop before\nyou close\nthe laptop.",
-			},
+			{ src: "/images/unmesa/unmesa-laptop.png", label: "Dashboard" },
+			{ src: "/images/unmesa/unmesa-post1.png", label: "AI workspace" },
+			{ src: "/images/unmesa/unmesa-post2.png", label: "Analytics" },
 		],
 	},
-	helix: {
+	cradle: {
 		challenge:
-			"Helix Labs had a working agent runtime but no interface fit for humans. Engineers were running agents from terminal commands and guessing at what went wrong. They needed an IDE that made agent loops legible.",
+			"Cradle Clothing needed a complete digital presence — from brand identity to a full e-commerce platform that matched their bold, athletic aesthetic while delivering a smooth shopping experience.",
 		approach:
-			"We treated each agent run as a timeline you can scrub. Context windows are visible, token costs live next to each step, and checkpoints let a human rewind to any branch point and fork a new run from there. The design leaned into 'flight-recorder' energy — every decision, reversible.",
+			"Handled everything from designing the UX in Figma to developing the full-stack e-commerce website. Crafted a bold, athletic aesthetic matching the brand's identity, implementing product listings, cart and checkout functionality, and admin tools.",
 		outcome:
-			"Helix reduced time-to-ship on agent features from six weeks to four days. Token spend dropped 41%. They closed a $28M Series A nine months after our engagement shipped.",
+			"Delivered a fully responsive, performance-optimized e-commerce site that blends strong branding with seamless usability. Complete shopping experience with streamlined checkout flow.",
 		screens: [
-			{
-				label: "Run timeline",
-				variant: "primary",
-				title: "Scrub\nthrough any\nrun.",
-			},
-			{
-				label: "Context inspector",
-				variant: "dark",
-				title: "See what\nthe agent\nsaw.",
-			},
-			{
-				label: "Checkpoint graph",
-				variant: "ink",
-				title: "Every\nbranch,\nreversible.",
-			},
+			{ src: "/images/cradle/cradle.png", label: "Homepage" },
+			{ src: "/images/cradle/cradle-laptop.png", label: "Product page" },
+			{ src: "/images/cradle/cradle-phone.png", label: "Mobile view" },
 		],
 	},
-	mira: {
+	insyd: {
 		challenge:
-			"DAOs were managing multi-million dollar treasuries from block explorers and Google Sheets. Mira Protocol had built a multi-sig contract system; they needed a surface non-crypto-native CFOs could operate without losing their mind.",
+			"The nightlife industry lacked a digital bridge between partygoers and venues. Insyd needed to be built from zero — concept, design, development, branding, and go-to-market — all within a tight timeline.",
 		approach:
-			"We designed the product to look like a bank statement, not a wallet. Transactions have labels. Payroll runs on schedules. Vesting shows you the next twelve months at a glance. Every on-chain action has an off-chain explanation built into the UI.",
+			"As the creator, led the product from concept to launch. Designed the UI/UX for a sleek nightlife-focused experience, built the app using React Native and Firebase, handled branding and marketing strategy, and ran user feedback loops to guide iterations.",
 		outcome:
-			"Mira now manages $312M in DAO treasury across 84 organizations. Transaction failure rates dropped to 0.04%. Support volume fell by two-thirds post-launch.",
+			"Insyd successfully bridges the gap between partygoers and nightlife venues, creating a dynamic clubbing ecosystem. Built and launched within 3 months with strong initial traction and positive user reception.",
 		screens: [
-			{
-				label: "Treasury ledger",
-				variant: "primary",
-				title: "Reads like\na bank\nstatement.",
-			},
-			{
-				label: "Schedule payroll",
-				variant: "dark",
-				title: "Salary day,\non-chain.",
-			},
-			{
-				label: "Vesting timeline",
-				variant: "ink",
-				title: "Twelve\nmonths,\nin focus.",
-			},
-		],
-	},
-	fieldnote: {
-		challenge:
-			"Fieldnote's founders were long-form writers frustrated with the state of writing tools. Docs apps treated a 20,000-word essay the same as a grocery list. They wanted a tool that tracked the shape of an argument, not just its letters.",
-		approach:
-			"We built an outliner that lives above the text. Sections fold and unfold like paper. Citations collect themselves as you write. A reading-time estimate sits next to every heading so you feel the document's shape. Typography was non-negotiable.",
-		outcome:
-			"Fieldnote hit 4.8 stars on the App Store in month one. Paid conversion is 11.2% — more than double the category median. D30 retention sits at 63%.",
-		screens: [
-			{
-				label: "The editor",
-				variant: "primary",
-				title: "Long-form,\nas it should\nbe.",
-			},
-			{
-				label: "Outline mode",
-				variant: "dark",
-				title: "See the\nshape of\nyour argument.",
-			},
-			{
-				label: "Citations drawer",
-				variant: "ink",
-				title: "Footnotes\nthat gather\nthemselves.",
-			},
-		],
-	},
-	prism: {
-		challenge:
-			"Prism wanted to let enterprises run their own LLMs — private, fine-tuned, observable. The science was solid; the interface was four dashboards stitched together with urls. Nothing about it felt like a product.",
-		approach:
-			"We designed a single control plane: deploy, observe, fine-tune. The IA collapses from fifty screens to nine. Docs were rewritten from scratch with working playgrounds embedded in every page, so developers could paste a token and be making calls in under four minutes.",
-		outcome:
-			"Prism now serves 38 enterprise customers. P95 latency sits at 112ms across regions. Developer onboarding — token to first successful call — averages 3 minutes 41 seconds.",
-		screens: [
-			{
-				label: "Deployments",
-				variant: "primary",
-				title: "Deploy.\nObserve.\nFine-tune.",
-			},
-			{
-				label: "Observability",
-				variant: "dark",
-				title: "Every\nprompt,\ntraceable.",
-			},
-			{
-				label: "Developer docs",
-				variant: "ink",
-				title: "Token to\nfirst call:\nfour\nminutes.",
-			},
-		],
-	},
-	arclight: {
-		challenge:
-			"Arclight is building zero-knowledge identity for the open web. The cryptography is state of the art; the UX needed to make 'I am over 21 but I'm not telling you my birthday' feel as simple as unlocking your phone.",
-		approach:
-			"We designed the wallet around a single metaphor: the proof card. Each credential is a card in your pocket; sharing one is a swipe. We hid the cryptographic ceremony behind a single animated confirmation — the zkSNARK is still generating, but the user just sees a checkmark.",
-		outcome:
-			"2.1M identities issued in the first year. 140+ dApps integrated. Onboarding drop-off dropped 58% vs. the previous prototype.",
-		screens: [
-			{
-				label: "Proof cards",
-				variant: "primary",
-				title: "Your\ncredentials,\nin a pocket.",
-			},
-			{
-				label: "Share a proof",
-				variant: "dark",
-				title: "Prove it\nwithout\nshowing\nit.",
-			},
-			{ label: "Settings", variant: "ink", title: "Privacy,\nset once." },
+			{ src: "/images/insyd/insyd.png", label: "Home screen" },
+			{ src: "/images/insyd/insyd1.png", label: "Venue discovery" },
+			{ src: "/images/insyd/insyd2.png", label: "Event details" },
 		],
 	},
 };

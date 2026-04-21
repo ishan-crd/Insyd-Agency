@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PROJECTS } from "@/data/projects";
@@ -50,12 +51,26 @@ export default function WorkList() {
 						background: p.color,
 					}}
 				>
-					<div
-						className="work-item__preview-art"
-						style={{ color: p.accentInk }}
-					>
-						{p.name}
-					</div>
+					{p.images[0] ? (
+						<Image
+							src={p.images[0]}
+							alt={p.name}
+							width={400}
+							height={260}
+							style={{
+								width: "100%",
+								height: "100%",
+								objectFit: "cover",
+							}}
+						/>
+					) : (
+						<div
+							className="work-item__preview-art"
+							style={{ color: p.accentInk }}
+						>
+							{p.name}
+						</div>
+					)}
 				</div>
 			))}
 		</>
