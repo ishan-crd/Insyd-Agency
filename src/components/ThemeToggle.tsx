@@ -28,7 +28,7 @@ export default function ThemeToggle() {
 			data-cursor="button"
 			aria-label="Toggle theme"
 		>
-			<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+			<svg width="22" height="22" viewBox="0 0 16 16" fill="none">
 				{theme === "light" ? (
 					<path
 						d="M14 9.2A6 6 0 016.8 2 6 6 0 1014 9.2z"
