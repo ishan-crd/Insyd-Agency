@@ -14,6 +14,7 @@ export interface Project {
 	tech: string[];
 	liveUrl?: string;
 	heroVideo?: string;
+	scope: { label: string; value: string }[];
 	kpis: { label: string; value: string }[];
 	images: string[];
 }
@@ -35,6 +36,11 @@ export const PROJECTS: Project[] = [
 			"Designed and developed Clipstake from the ground up — a polished landing page, a full-suite dashboard system covering creator, brand, and admin flows, and a native mobile app shipped in both light and dark mode. Every pixel, every endpoint, every screen built from scratch.",
 		tech: ["Next.js", "TypeScript", "Tailwind CSS", "React Native", "Node.js", "Figma"],
 		heroVideo: "/images/clipstake/Clipstake1.mov",
+		scope: [
+			{ label: "Landing Page", value: "Design & Development" },
+			{ label: "Web Dashboards", value: "Creator, Brand & Admin" },
+			{ label: "Mobile App", value: "iOS & Android — Light + Dark" },
+		],
 		kpis: [
 			{ label: "Dashboards built", value: "3" },
 			{ label: "App themes", value: "Light + Dark" },
@@ -64,6 +70,11 @@ export const PROJECTS: Project[] = [
 			"A production-grade, on-chain Web3 streaming platform. Built the entire frontend and PWA architecture from scratch — wallet integrations, on-chain tipping, and stream clipping via Mux Player.",
 		tech: ["Next.js", "TypeScript", "Tailwind CSS", "Mux Player API", "Web3 Wallets", "Alchemy"],
 		liveUrl: "https://den.show/",
+		scope: [
+			{ label: "Web Platform", value: "Full PWA — Design & Development" },
+			{ label: "Wallet Integration", value: "Multi-wallet on-chain payments" },
+			{ label: "Streaming Engine", value: "Mux Player with clipping" },
+		],
 		kpis: [
 			{ label: "Platform", value: "PWA" },
 			{ label: "Wallet integrations", value: "5+" },
@@ -93,6 +104,11 @@ export const PROJECTS: Project[] = [
 			"End-to-end design and development of Edwance.ai's landing page and dashboard, driving the product's growth from concept to a fully scaled service with intuitive navigation and seamless UX.",
 		tech: ["Next.js", "TypeScript", "Tailwind CSS"],
 		liveUrl: "https://edwance.ai/",
+		scope: [
+			{ label: "Landing Page", value: "Design & Development" },
+			{ label: "Dashboard", value: "Full platform UI" },
+			{ label: "Product Growth", value: "Concept to scaled service" },
+		],
 		kpis: [
 			{ label: "Pages designed", value: "12+" },
 			{ label: "Load time", value: "< 1.5s" },
@@ -115,6 +131,11 @@ export const PROJECTS: Project[] = [
 		summary:
 			"Led the end-to-end design and development of Tangle's MVP — a scalable cross-platform application covering both frontend and backend architecture, from concept to a functional, user-ready product.",
 		tech: ["React Native", "TypeScript", "Nativewind"],
+		scope: [
+			{ label: "Mobile App", value: "iOS & Android — full build" },
+			{ label: "Backend", value: "API architecture from scratch" },
+			{ label: "Product Design", value: "End-to-end UX & UI" },
+		],
 		kpis: [
 			{ label: "Platforms", value: "iOS + Android" },
 			{ label: "Stage", value: "Funded MVP" },
@@ -138,6 +159,11 @@ export const PROJECTS: Project[] = [
 			"Designed and developed a comprehensive AI-powered platform that makes complex AI capabilities accessible to users of all technical backgrounds, with a modern responsive design and seamless UX.",
 		tech: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
 		liveUrl: "https://unmesa.app/",
+		scope: [
+			{ label: "Web Platform", value: "Full-stack design & development" },
+			{ label: "AI Integration", value: "Multi-model tooling interface" },
+			{ label: "Product Design", value: "End-to-end UX & responsive UI" },
+		],
 		kpis: [
 			{ label: "AI tools integrated", value: "8+" },
 			{ label: "User onboarding", value: "< 2 min" },
@@ -165,6 +191,11 @@ export const PROJECTS: Project[] = [
 		summary:
 			"Handled the entire digital presence — from Figma UX design to full-stack e-commerce development. Bold athletic aesthetic, smooth shopping experience, product listings, cart, checkout, and admin tools.",
 		tech: ["React.js", "CSS", "JavaScript"],
+		scope: [
+			{ label: "E-Commerce Site", value: "Full-stack design & development" },
+			{ label: "Brand Design", value: "Visual identity & UX in Figma" },
+			{ label: "Admin Tools", value: "Product & order management" },
+		],
 		kpis: [
 			{ label: "Products listed", value: "50+" },
 			{ label: "Mobile-first", value: "100%" },
@@ -192,6 +223,11 @@ export const PROJECTS: Project[] = [
 			"Built from concept to launch — a revolutionary clubbing access app bridging partygoers and nightlife venues. Handled end-to-end design, development, branding, and marketing strategy.",
 		tech: ["React Native", "JavaScript"],
 		liveUrl: "https://insyd.in/",
+		scope: [
+			{ label: "Mobile App", value: "iOS & Android — React Native" },
+			{ label: "Brand & Marketing", value: "Identity, strategy & go-to-market" },
+			{ label: "Product Design", value: "End-to-end UX & UI" },
+		],
 		kpis: [
 			{ label: "Venues onboarded", value: "20+" },
 			{ label: "App rating", value: "4.7" },

@@ -1216,6 +1216,39 @@ button {
 	}
 }
 
+/* Scope row — what we worked on */
+.scope-row {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1px;
+	background: var(--line);
+	border: 1px solid var(--line);
+	border-radius: 8px;
+	overflow: hidden;
+}
+.scope-cell {
+	background: var(--bg);
+	padding: 40px 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.scope-cell__value {
+	font-size: clamp(28px, 4vw, 48px);
+	letter-spacing: -0.03em;
+	line-height: 1;
+}
+.scope-cell__label {
+	font-size: 14px;
+	color: var(--muted);
+	line-height: 1.4;
+}
+@media (width <= 768px) {
+	.scope-row {
+		grid-template-columns: 1fr;
+	}
+}
+
 /* KPI row */
 .kpi-row {
 	display: grid;

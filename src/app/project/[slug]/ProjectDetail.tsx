@@ -79,6 +79,28 @@ export default function ProjectDetail({
 				</div>
 			</section>
 
+			{/* Scope — what we worked on */}
+			<section style={{ padding: "80px 0 0" }}>
+				<div className="container">
+					<div className="mono muted" style={{ marginBottom: 24 }}>
+						What we worked on
+					</div>
+					<div className="scope-row">
+						{project.scope.map((s) => (
+							<div key={s.label} className="scope-cell">
+								<div
+									className="scope-cell__value display"
+									style={{ color: project.color }}
+								>
+									{s.label}
+								</div>
+								<div className="scope-cell__label">{s.value}</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
 			{/* Hero video — landing page showcase */}
 			{hasVideo && (
 				<section style={{ padding: "60px 0 0" }}>
