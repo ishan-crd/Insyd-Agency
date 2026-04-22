@@ -31,7 +31,7 @@ export default function ThemeToggle() {
 			<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
 				{theme === "light" ? (
 					<path
-						d="M10.5 8a2.5 2.5 0 01-3.3 2.36A4 4 0 1010.5 8z"
+						d="M14 9.2A6 6 0 016.8 2 6 6 0 1014 9.2z"
 						fill="currentColor"
 					/>
 				) : (
