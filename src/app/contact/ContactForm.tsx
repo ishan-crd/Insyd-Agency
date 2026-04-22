@@ -10,7 +10,15 @@ export default function ContactForm() {
 	const [toastMsg, setToastMsg] = useState("Message received. We'll be in touch.");
 	const [bookingName, setBookingName] = useState("");
 	const [bookingEmail, setBookingEmail] = useState("");
+	const [bookingTime, setBookingTime] = useState<string | null>(null);
 	const [bookingSending, setBookingSending] = useState(false);
+
+	const timeSlots = [
+		"10:00", "10:30", "11:00", "11:30",
+		"12:00", "12:30", "14:00", "14:30",
+		"15:00", "15:30", "16:00", "16:30",
+		"17:00", "17:30",
+	];
 	const [form, setForm] = useState({
 		name: "",
 		email: "",
@@ -260,6 +268,33 @@ export default function ContactForm() {
 						))}
 					</div>
 					{slot && (
+						<>
+							<div className="mono muted" style={{ marginTop: 20, marginBottom: 10, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+								Pick a time
+							</div>
+							<div
+								style={{
+									display: "grid",
+									gridTemplateColumns: "repeat(4, 1fr)",
+									gap: 6,
+								}}
+							>
+								{timeSlots.map((t) => (
+									<button
+										type="button"
+										key={t}
+										className={`contact-cal-slot ${bookingTime === t ? "is-on" : ""}`}
+										onClick={() => setBookingTime(t)}
+										data-cursor="button"
+										style={{ padding: "8px 4px", fontSize: 13 }}
+									>
+										{t}
+									</button>
+								))}
+							</div>
+						</>
+					)}
+					{slot && bookingTime && (
 						<div
 							style={{
 								marginTop: 14,
@@ -274,11 +309,11 @@ export default function ContactForm() {
 							</div>
 							<div>
 								{slots.find((s) => s.key === slot)?.day} ·{" "}
-								{slots.find((s) => s.key === slot)?.date} · 14:00 IST
+								{slots.find((s) => s.key === slot)?.date} · {bookingTime} IST
 							</div>
 						</div>
 					)}
-					{slot && bookingName && bookingEmail && (
+					{slot && bookingTime && bookingName && bookingEmail && (
 						<button
 							type="button"
 							className="contact-submit"
@@ -296,6 +331,7 @@ export default function ContactForm() {
 											name: bookingName,
 											email: bookingEmail,
 											date: slot,
+											time: bookingTime,
 											day: selectedSlot?.day,
 											dateLabel: selectedSlot?.date,
 										}),
@@ -305,6 +341,7 @@ export default function ContactForm() {
 										setToast(true);
 										setTimeout(() => setToast(false), 4000);
 										setSlot(null);
+										setBookingTime(null);
 										setBookingName("");
 										setBookingEmail("");
 									}

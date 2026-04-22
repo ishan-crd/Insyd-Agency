@@ -5,16 +5,16 @@ const OWNER_EMAIL = "ishan@insyd.in";
 export async function POST(req: Request) {
 	try {
 		const body = await req.json();
-		const { name, email, date, day, dateLabel } = body;
+		const { name, email, date, time, day, dateLabel } = body;
 
-		if (!name || !email || !date) {
+		if (!name || !email || !date || !time) {
 			return NextResponse.json(
-				{ error: "Name, email, and date are required." },
+				{ error: "Name, email, date, and time are required." },
 				{ status: 400 },
 			);
 		}
 
-		const slotDisplay = `${day} · ${dateLabel} · 14:00 IST`;
+		const slotDisplay = `${day} · ${dateLabel} · ${time} IST`;
 
 		// Email to Insyd
 		const ownerSubject = `Call booked — ${name} · ${day} ${dateLabel}`;
