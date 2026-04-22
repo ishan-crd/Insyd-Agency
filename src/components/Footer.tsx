@@ -87,19 +87,13 @@ export default function Footer() {
 								</a>
 							</li>
 							<li>
-								<a href="#" data-cursor="link">
-									LinkedIn
-								</a>
+								<span data-cursor="link">LinkedIn</span>
 							</li>
 							<li>
-								<a href="#" data-cursor="link">
-									Read.cv
-								</a>
+								<span data-cursor="link">Read.cv</span>
 							</li>
 							<li>
-								<a href="#" data-cursor="link">
-									Dribbble
-								</a>
+								<span data-cursor="link">Dribbble</span>
 							</li>
 						</ul>
 					</div>

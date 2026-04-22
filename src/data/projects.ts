@@ -23,7 +23,8 @@ export const PROJECTS: Project[] = [
 	{
 		slug: "clipstake",
 		name: "Clipstake",
-		tagline: "Full-stack creator economy platform — landing page, dashboards, and mobile app.",
+		tagline:
+			"Full-stack creator economy platform — landing page, dashboards, and mobile app.",
 		category: "Full Product",
 		year: 2025,
 		client: "Clipstake",
@@ -34,7 +35,14 @@ export const PROJECTS: Project[] = [
 		accentInk: "#F3F0EA",
 		summary:
 			"Designed and developed Clipstake from the ground up — a polished landing page, a full-suite dashboard system covering creator, brand, and admin flows, and a native mobile app shipped in both light and dark mode. Every pixel, every endpoint, every screen built from scratch.",
-		tech: ["Next.js", "TypeScript", "Tailwind CSS", "React Native", "Node.js", "Figma"],
+		tech: [
+			"Next.js",
+			"TypeScript",
+			"Tailwind CSS",
+			"React Native",
+			"Node.js",
+			"Figma",
+		],
 		heroVideo: "/images/clipstake/Clipstake1.mov",
 		scope: [
 			{ label: "Landing Page", value: "Design & Development" },
@@ -68,7 +76,14 @@ export const PROJECTS: Project[] = [
 		accentInk: "#F3F0EA",
 		summary:
 			"A production-grade, on-chain Web3 streaming platform. Built the entire frontend and PWA architecture from scratch — wallet integrations, on-chain tipping, and stream clipping via Mux Player.",
-		tech: ["Next.js", "TypeScript", "Tailwind CSS", "Mux Player API", "Web3 Wallets", "Alchemy"],
+		tech: [
+			"Next.js",
+			"TypeScript",
+			"Tailwind CSS",
+			"Mux Player API",
+			"Web3 Wallets",
+			"Alchemy",
+		],
 		liveUrl: "https://den.show/",
 		scope: [
 			{ label: "Web Platform", value: "Full PWA — Design & Development" },
@@ -225,7 +240,10 @@ export const PROJECTS: Project[] = [
 		liveUrl: "https://insyd.in/",
 		scope: [
 			{ label: "Mobile App", value: "iOS & Android — React Native" },
-			{ label: "Brand & Marketing", value: "Identity, strategy & go-to-market" },
+			{
+				label: "Brand & Marketing",
+				value: "Identity, strategy & go-to-market",
+			},
 			{ label: "Product Design", value: "End-to-end UX & UI" },
 		],
 		kpis: [
@@ -260,11 +278,26 @@ export const CASE_STUDY_CONTENT: Record<string, CaseStudyContent> = {
 			"Delivered a complete product ecosystem from scratch — a landing page that drives signups, three fully functional dashboards that power the entire creator economy workflow, and a native mobile app with pixel-perfect light and dark mode support. The platform ships with a cohesive design language across every touchpoint, from web to mobile.",
 		heroVideo: "/images/clipstake/Clipstake1.mov",
 		screens: [
-			{ src: "/images/clipstake/clipstakeiphone1.png", label: "App — Home screen" },
-			{ src: "/images/clipstake/clipstakeiphone2.png", label: "App — Creator profile" },
-			{ src: "/images/clipstake/clipstakeiphone3.png", label: "App — Campaign view" },
-			{ src: "/images/clipstake/clipstakeiphone4.png", label: "App — Analytics" },
-			{ src: "/images/clipstake/clipstakeiphone5.png", label: "App — Dark mode" },
+			{
+				src: "/images/clipstake/clipstakeiphone1.png",
+				label: "App — Home screen",
+			},
+			{
+				src: "/images/clipstake/clipstakeiphone2.png",
+				label: "App — Creator profile",
+			},
+			{
+				src: "/images/clipstake/clipstakeiphone3.png",
+				label: "App — Campaign view",
+			},
+			{
+				src: "/images/clipstake/clipstakeiphone4.png",
+				label: "App — Analytics",
+			},
+			{
+				src: "/images/clipstake/clipstakeiphone5.png",
+				label: "App — Dark mode",
+			},
 		],
 	},
 	denshow: {

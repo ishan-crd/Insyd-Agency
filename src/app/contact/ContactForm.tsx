@@ -7,17 +7,29 @@ export default function ContactForm() {
 	const [budget, setBudget] = useState("₹20–40L");
 	const [slot, setSlot] = useState<string | null>(null);
 	const [toast, setToast] = useState(false);
-	const [toastMsg, setToastMsg] = useState("Message received. We'll be in touch.");
+	const [toastMsg, setToastMsg] = useState(
+		"Message received. We'll be in touch.",
+	);
 	const [bookingName, setBookingName] = useState("");
 	const [bookingEmail, setBookingEmail] = useState("");
 	const [bookingTime, setBookingTime] = useState<string | null>(null);
 	const [bookingSending, setBookingSending] = useState(false);
 
 	const timeSlots = [
-		"10:00", "10:30", "11:00", "11:30",
-		"12:00", "12:30", "14:00", "14:30",
-		"15:00", "15:30", "16:00", "16:30",
-		"17:00", "17:30",
+		"10:00",
+		"10:30",
+		"11:00",
+		"11:30",
+		"12:00",
+		"12:30",
+		"14:00",
+		"14:30",
+		"15:00",
+		"15:30",
+		"16:00",
+		"16:30",
+		"17:00",
+		"17:30",
 	];
 	const [form, setForm] = useState({
 		name: "",
@@ -67,7 +79,9 @@ export default function ContactForm() {
 		}
 	};
 
-	const [today, setToday] = useState(() => new Date().toISOString().slice(0, 10));
+	const [today, setToday] = useState(() =>
+		new Date().toISOString().slice(0, 10),
+	);
 
 	// Refresh date at midnight so slots auto-update
 	useEffect(() => {
@@ -86,11 +100,21 @@ export default function ContactForm() {
 	const slots = useMemo(() => {
 		const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 		const monthNames = [
-			"Jan", "Feb", "Mar", "Apr", "May", "Jun",
-			"Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+			"Jan",
+			"Feb",
+			"Mar",
+			"Apr",
+			"May",
+			"Jun",
+			"Jul",
+			"Aug",
+			"Sep",
+			"Oct",
+			"Nov",
+			"Dec",
 		];
 		const days: { key: string; day: string; date: string }[] = [];
-		const d = new Date(today + "T00:00:00");
+		const d = new Date(`${today}T00:00:00`);
 		for (let i = 0; i < 10; i++) {
 			const current = new Date(d);
 			current.setDate(d.getDate() + i);
@@ -220,7 +244,14 @@ export default function ContactForm() {
 					<p>
 						Pick a 30-minute slot — we&apos;ll confirm by email. All times IST.
 					</p>
-					<div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 16 }}>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "column",
+							gap: 12,
+							marginBottom: 16,
+						}}
+					>
 						<input
 							type="text"
 							placeholder="Your name"
@@ -266,7 +297,16 @@ export default function ContactForm() {
 					</div>
 					{slot && (
 						<>
-							<div className="mono muted" style={{ marginTop: 20, marginBottom: 10, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+							<div
+								className="mono muted"
+								style={{
+									marginTop: 20,
+									marginBottom: 10,
+									fontSize: 11,
+									textTransform: "uppercase",
+									letterSpacing: "0.08em",
+								}}
+							>
 								Pick a time
 							</div>
 							<div
@@ -334,7 +374,9 @@ export default function ContactForm() {
 										}),
 									});
 									if (res.ok) {
-										setToastMsg("Call booked! Check your email for confirmation.");
+										setToastMsg(
+											"Call booked! Check your email for confirmation.",
+										);
 										setToast(true);
 										setTimeout(() => setToast(false), 4000);
 										setSlot(null);

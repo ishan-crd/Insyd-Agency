@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 export default function ThemeToggle() {
 	const [theme, setTheme] = useState<string>(() => {
 		if (typeof window !== "undefined") {
-			return document.documentElement.getAttribute("data-theme") || localStorage.getItem("insyd-theme") || "light";
+			return (
+				document.documentElement.getAttribute("data-theme") ||
+				localStorage.getItem("insyd-theme") ||
+				"light"
+			);
 		}
 		return "light";
 	});
@@ -25,12 +29,10 @@ export default function ThemeToggle() {
 			data-cursor="button"
 			aria-label="Toggle theme"
 		>
+			{/* biome-ignore lint/a11y/noSvgWithoutTitle: decorative icon */}
 			<svg width="22" height="22" viewBox="0 0 16 16" fill="none">
 				{theme === "light" ? (
-					<path
-						d="M14 9.2A6 6 0 016.8 2 6 6 0 1014 9.2z"
-						fill="currentColor"
-					/>
+					<path d="M14 9.2A6 6 0 016.8 2 6 6 0 1014 9.2z" fill="currentColor" />
 				) : (
 					<>
 						<circle cx="8" cy="8" r="3" fill="currentColor" />

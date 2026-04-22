@@ -15,7 +15,8 @@ export default function ProjectDetail({
 	next: Project;
 }) {
 	const hasVideo = !!content.heroVideo;
-	const isAppShowcase = project.images.length >= 3 && project.slug === "clipstake";
+	const isAppShowcase =
+		project.images.length >= 3 && project.slug === "clipstake";
 
 	return (
 		<>
@@ -69,7 +70,10 @@ export default function ProjectDetail({
 									rel="noopener noreferrer"
 									className="proj-specs__val"
 									data-cursor="link"
-									style={{ textDecoration: "underline", textUnderlineOffset: 4 }}
+									style={{
+										textDecoration: "underline",
+										textUnderlineOffset: 4,
+									}}
 								>
 									Visit site →
 								</a>
@@ -230,22 +234,24 @@ export default function ProjectDetail({
 							gap: 32,
 						}}
 					>
-						{content.screens.slice(hasVideo ? 0 : 1, hasVideo ? 2 : 3).map((screen) => (
-							<div key={screen.label} className="proj-image-frame">
-								<Image
-									src={screen.src}
-									alt={screen.label}
-									width={700}
-									height={440}
-									style={{
-										width: "100%",
-										height: "auto",
-										borderRadius: 12,
-									}}
-								/>
-								<div className="proj-image-label mono">{screen.label}</div>
-							</div>
-						))}
+						{content.screens
+							.slice(hasVideo ? 0 : 1, hasVideo ? 2 : 3)
+							.map((screen) => (
+								<div key={screen.label} className="proj-image-frame">
+									<Image
+										src={screen.src}
+										alt={screen.label}
+										width={700}
+										height={440}
+										style={{
+											width: "100%",
+											height: "auto",
+											borderRadius: 12,
+										}}
+									/>
+									<div className="proj-image-label mono">{screen.label}</div>
+								</div>
+							))}
 					</div>
 				</section>
 			)}
