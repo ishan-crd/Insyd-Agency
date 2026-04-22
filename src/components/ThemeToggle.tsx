@@ -3,15 +3,12 @@
 import { useEffect, useState } from "react";
 
 export default function ThemeToggle() {
-	const [theme, setTheme] = useState<string>("light");
-
-	useEffect(() => {
-		try {
-			const saved = localStorage.getItem("insyd-theme") || "light";
-			setTheme(saved);
-			document.documentElement.setAttribute("data-theme", saved);
-		} catch {}
-	}, []);
+	const [theme, setTheme] = useState<string>(() => {
+		if (typeof window !== "undefined") {
+			return document.documentElement.getAttribute("data-theme") || localStorage.getItem("insyd-theme") || "light";
+		}
+		return "light";
+	});
 
 	useEffect(() => {
 		document.documentElement.setAttribute("data-theme", theme);
