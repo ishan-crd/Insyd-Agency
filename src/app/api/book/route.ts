@@ -1,4 +1,7 @@
+import { render } from "@react-email/render";
 import { NextResponse } from "next/server";
+import BookingConfirmation from "@/emails/BookingConfirmation";
+import BookingNotification from "@/emails/BookingNotification";
 
 const OWNER_EMAIL = "ishan@insyd.in";
 
@@ -14,39 +17,16 @@ export async function POST(req: Request) {
 			);
 		}
 
-		const slotDisplay = `${day} · ${dateLabel} · ${time} IST`;
+		const ownerSubject = `Call booked — ${name} · ${day} ${dateLabel} at ${time}`;
+		const clientSubject = `Your call with Insyd is confirmed — ${day} ${dateLabel}`;
 
-		// Email to Insyd
-		const ownerSubject = `Call booked — ${name} · ${day} ${dateLabel}`;
-		const ownerBody = [
-			`New call booking received`,
-			"",
-			`Name: ${name}`,
-			`Email: ${email}`,
-			`Slot: ${slotDisplay}`,
-			`Date: ${date}`,
-			"",
-			"Please confirm or follow up with the client.",
-			"",
-			"—",
-			"Sent via insyd.in/contact",
-		].join("\n");
+		const ownerHtml = await render(
+			BookingNotification({ name, email, day, dateLabel, time, date }),
+		);
 
-		// Confirmation to the person
-		const clientSubject = `Your call with Insyd is booked — ${day} ${dateLabel}`;
-		const clientBody = [
-			`Hi ${name.split(" ")[0]},`,
-			"",
-			`Your 30-minute call with Insyd has been booked:`,
-			"",
-			`Date: ${slotDisplay}`,
-			"",
-			"We'll send a meeting link closer to the date. If you need to reschedule, just reply to this email.",
-			"",
-			"Talk soon,",
-			"Ishan",
-			"Insyd — ishan@insyd.in",
-		].join("\n");
+		const clientHtml = await render(
+			BookingConfirmation({ name, day, dateLabel, time }),
+		);
 
 		const resendKey = process.env.RESEND_API_KEY;
 
@@ -62,7 +42,7 @@ export async function POST(req: Request) {
 						from: "Insyd <noreply@insyd.in>",
 						to: [OWNER_EMAIL],
 						subject: ownerSubject,
-						text: ownerBody,
+						html: ownerHtml,
 						reply_to: email,
 					}),
 				}),
@@ -76,18 +56,14 @@ export async function POST(req: Request) {
 						from: "Insyd <noreply@insyd.in>",
 						to: [email],
 						subject: clientSubject,
-						text: clientBody,
+						html: clientHtml,
 					}),
 				}),
 			]);
 		} else {
-			console.log("=== CALL BOOKING ===");
-			console.log("TO OWNER:", ownerSubject);
-			console.log(ownerBody);
-			console.log("TO CLIENT:", clientSubject);
-			console.log(clientBody);
-			console.log("====================");
-			console.log("Set RESEND_API_KEY env var to enable email delivery.");
+			console.log("=== CALL BOOKING (no RESEND_API_KEY) ===");
+			console.log("Owner:", ownerSubject);
+			console.log("Client:", clientSubject);
 		}
 
 		return NextResponse.json({ ok: true });

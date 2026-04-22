@@ -1,4 +1,7 @@
+import { render } from "@react-email/render";
 import { NextResponse } from "next/server";
+import ContactConfirmation from "@/emails/ContactConfirmation";
+import ContactNotification from "@/emails/ContactNotification";
 
 const OWNER_EMAIL = "ishan@insyd.in";
 
@@ -21,46 +24,33 @@ export async function POST(req: Request) {
 			timeStyle: "short",
 		});
 
-		// Email to Insyd (you)
 		const ownerSubject = `New enquiry from ${name}${company ? ` — ${company}` : ""}`;
-		const ownerBody = [
-			`New project enquiry received on ${timestamp}`,
-			"",
-			`Name: ${name}`,
-			`Email: ${email}`,
-			`Company: ${company || "—"}`,
-			`Services: ${servicesList}`,
-			`Budget: ${budget || "—"}`,
-			"",
-			"Project details:",
-			about,
-			"",
-			"—",
-			"Sent via insyd.in/contact",
-		].join("\n");
-
-		// Confirmation email to the person
 		const clientSubject = `Thanks for reaching out, ${name.split(" ")[0]} — Insyd`;
-		const clientBody = [
-			`Hi ${name.split(" ")[0]},`,
-			"",
-			"Thanks for getting in touch! We've received your enquiry and will get back to you within 24 hours.",
-			"",
-			"Here's a summary of what you submitted:",
-			"",
-			`Services: ${servicesList}`,
-			`Budget: ${budget || "—"}`,
-			`Project: ${about}`,
-			"",
-			"Talk soon,",
-			"Ishan",
-			"Insyd — ishan@insyd.in",
-		].join("\n");
+
+		const ownerHtml = await render(
+			ContactNotification({
+				name,
+				email,
+				company: company || "—",
+				services: servicesList,
+				budget: budget || "—",
+				about,
+				timestamp,
+			}),
+		);
+
+		const clientHtml = await render(
+			ContactConfirmation({
+				name,
+				services: servicesList,
+				budget: budget || "—",
+				about,
+			}),
+		);
 
 		const resendKey = process.env.RESEND_API_KEY;
 
 		if (resendKey) {
-			// Send both emails via Resend
 			await Promise.all([
 				fetch("https://api.resend.com/emails", {
 					method: "POST",
@@ -72,7 +62,7 @@ export async function POST(req: Request) {
 						from: "Insyd <noreply@insyd.in>",
 						to: [OWNER_EMAIL],
 						subject: ownerSubject,
-						text: ownerBody,
+						html: ownerHtml,
 						reply_to: email,
 					}),
 				}),
@@ -86,21 +76,14 @@ export async function POST(req: Request) {
 						from: "Insyd <noreply@insyd.in>",
 						to: [email],
 						subject: clientSubject,
-						text: clientBody,
+						html: clientHtml,
 					}),
 				}),
 			]);
 		} else {
-			// Fallback: log to console when no API key is set
-			console.log("=== CONTACT FORM SUBMISSION ===");
-			console.log("TO OWNER:", ownerSubject);
-			console.log(ownerBody);
-			console.log("TO CLIENT:", clientSubject);
-			console.log(clientBody);
-			console.log("===============================");
-			console.log(
-				"Set RESEND_API_KEY env var to enable email delivery.",
-			);
+			console.log("=== CONTACT FORM (no RESEND_API_KEY) ===");
+			console.log("Owner:", ownerSubject);
+			console.log("Client:", clientSubject);
 		}
 
 		return NextResponse.json({ ok: true });
