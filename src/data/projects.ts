@@ -13,11 +13,41 @@ export interface Project {
 	summary: string;
 	tech: string[];
 	liveUrl?: string;
+	heroVideo?: string;
 	kpis: { label: string; value: string }[];
 	images: string[];
 }
 
 export const PROJECTS: Project[] = [
+	{
+		slug: "clipstake",
+		name: "Clipstake",
+		tagline: "Full-stack creator economy platform — landing page, dashboards, and mobile app.",
+		category: "Full Product",
+		year: 2025,
+		client: "Clipstake",
+		role: "Designer & Full Stack Developer",
+		duration: "2025",
+		featured: true,
+		color: "#CE1111",
+		accentInk: "#F3F0EA",
+		summary:
+			"Designed and developed Clipstake from the ground up — a polished landing page, a full-suite dashboard system covering creator, brand, and admin flows, and a native mobile app shipped in both light and dark mode. Every pixel, every endpoint, every screen built from scratch.",
+		tech: ["Next.js", "TypeScript", "Tailwind CSS", "React Native", "Node.js", "Figma"],
+		heroVideo: "/images/clipstake/Clipstake1.mov",
+		kpis: [
+			{ label: "Dashboards built", value: "3" },
+			{ label: "App themes", value: "Light + Dark" },
+			{ label: "Built from", value: "Scratch" },
+		],
+		images: [
+			"/images/clipstake/clipstakeiphone1.png",
+			"/images/clipstake/clipstakeiphone2.png",
+			"/images/clipstake/clipstakeiphone3.png",
+			"/images/clipstake/clipstakeiphone4.png",
+			"/images/clipstake/clipstakeiphone5.png",
+		],
+	},
 	{
 		slug: "denshow",
 		name: "Den.Show",
@@ -180,10 +210,27 @@ export interface CaseStudyContent {
 	challenge: string;
 	approach: string;
 	outcome: string;
+	heroVideo?: string;
 	screens: { src: string; label: string }[];
 }
 
 export const CASE_STUDY_CONTENT: Record<string, CaseStudyContent> = {
+	clipstake: {
+		challenge:
+			"Clipstake needed an entire digital product ecosystem built from zero — no existing codebase, no design system, no brand assets. They required a high-converting landing page to establish market presence, a comprehensive dashboard system serving three distinct user types (creators, brands, and admins), and a polished native mobile app that worked seamlessly in both light and dark mode. Every layer of the product needed to feel cohesive and premium while shipping fast.",
+		approach:
+			"Started with the landing page — designed and developed a conversion-focused experience that communicates Clipstake's value proposition instantly, with smooth scroll animations and a bold visual identity anchored by their signature red. Then architected the full dashboard system: the creator dashboard for managing content, analytics, and earnings; the brand dashboard for campaign management, creator discovery, and performance tracking; and the admin dashboard for platform oversight, user management, and system configuration. Each dashboard was built with role-based access, real-time data, and responsive layouts. In parallel, designed and developed the mobile app from scratch in React Native, implementing a complete dual-theme system — every screen, every component, every interaction works flawlessly in both light and dark mode.",
+		outcome:
+			"Delivered a complete product ecosystem from scratch — a landing page that drives signups, three fully functional dashboards that power the entire creator economy workflow, and a native mobile app with pixel-perfect light and dark mode support. The platform ships with a cohesive design language across every touchpoint, from web to mobile.",
+		heroVideo: "/images/clipstake/Clipstake1.mov",
+		screens: [
+			{ src: "/images/clipstake/clipstakeiphone1.png", label: "App — Home screen" },
+			{ src: "/images/clipstake/clipstakeiphone2.png", label: "App — Creator profile" },
+			{ src: "/images/clipstake/clipstakeiphone3.png", label: "App — Campaign view" },
+			{ src: "/images/clipstake/clipstakeiphone4.png", label: "App — Analytics" },
+			{ src: "/images/clipstake/clipstakeiphone5.png", label: "App — Dark mode" },
+		],
+	},
 	denshow: {
 		challenge:
 			"Den.Show needed a production-grade streaming platform that could handle on-chain payments, multiple wallet integrations, and a seamless viewing experience — all built as a PWA that works flawlessly across desktop and mobile.",

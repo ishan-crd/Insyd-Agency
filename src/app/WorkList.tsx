@@ -51,7 +51,20 @@ export default function WorkList() {
 						background: p.color,
 					}}
 				>
-					{p.images[0] ? (
+					{p.heroVideo ? (
+						<video
+							src={p.heroVideo}
+							autoPlay
+							loop
+							muted
+							playsInline
+							style={{
+								width: "100%",
+								height: "100%",
+								objectFit: "cover",
+							}}
+						/>
+					) : p.images[0] ? (
 						<Image
 							src={p.images[0]}
 							alt={p.name}

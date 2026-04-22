@@ -1185,6 +1185,37 @@ button {
 	color: var(--muted);
 }
 
+/* App screenshot gallery */
+.app-gallery {
+	display: flex;
+	gap: 24px;
+	overflow-x: auto;
+	padding-bottom: 16px;
+	scroll-snap-type: x mandatory;
+	-webkit-overflow-scrolling: touch;
+}
+.app-gallery::-webkit-scrollbar {
+	height: 4px;
+}
+.app-gallery::-webkit-scrollbar-track {
+	background: var(--line);
+	border-radius: 2px;
+}
+.app-gallery::-webkit-scrollbar-thumb {
+	background: var(--muted);
+	border-radius: 2px;
+}
+.app-gallery__item {
+	flex: 0 0 auto;
+	width: 280px;
+	scroll-snap-align: start;
+}
+@media (width <= 768px) {
+	.app-gallery__item {
+		width: 220px;
+	}
+}
+
 /* KPI row */
 .kpi-row {
 	display: grid;

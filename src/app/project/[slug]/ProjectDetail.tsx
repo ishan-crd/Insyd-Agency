@@ -14,6 +14,9 @@ export default function ProjectDetail({
 	content: CaseStudyContent;
 	next: Project;
 }) {
+	const hasVideo = !!content.heroVideo;
+	const isAppShowcase = project.images.length >= 3 && project.slug === "clipstake";
+
 	return (
 		<>
 			<section
@@ -76,6 +79,30 @@ export default function ProjectDetail({
 				</div>
 			</section>
 
+			{/* Hero video — landing page showcase */}
+			{hasVideo && (
+				<section style={{ padding: "60px 0 0" }}>
+					<div className="container">
+						<div className="proj-image-frame">
+							<video
+								src={content.heroVideo}
+								autoPlay
+								loop
+								muted
+								playsInline
+								style={{
+									width: "100%",
+									height: "auto",
+									borderRadius: 12,
+									display: "block",
+								}}
+							/>
+							<div className="proj-image-label mono">Landing page</div>
+						</div>
+					</div>
+				</section>
+			)}
+
 			<section className="proj-block">
 				<div className="container">
 					<div className="proj-block__head">
@@ -98,7 +125,8 @@ export default function ProjectDetail({
 				</div>
 			</section>
 
-			{content.screens[0] && (
+			{/* First screen image (non-video projects) */}
+			{!hasVideo && content.screens[0] && (
 				<section style={{ padding: "60px 0" }}>
 					<div className="container">
 						<div className="proj-image-frame">
@@ -140,7 +168,36 @@ export default function ProjectDetail({
 				</div>
 			</section>
 
-			{content.screens.length > 1 && (
+			{/* App screenshots gallery — horizontal scroll for Clipstake */}
+			{isAppShowcase && (
+				<section style={{ padding: "60px 0" }}>
+					<div className="container">
+						<div className="mono muted" style={{ marginBottom: 24 }}>
+							App design — Light &amp; Dark mode
+						</div>
+						<div className="app-gallery">
+							{project.images.map((src) => (
+								<div key={src} className="app-gallery__item">
+									<Image
+										src={src}
+										alt={`${project.name} app screenshot`}
+										width={320}
+										height={693}
+										style={{
+											width: "100%",
+											height: "auto",
+											borderRadius: 24,
+										}}
+									/>
+								</div>
+							))}
+						</div>
+					</div>
+				</section>
+			)}
+
+			{/* Standard 2-up screens for non-app projects */}
+			{!isAppShowcase && content.screens.length > 1 && (
 				<section style={{ padding: "40px 0" }}>
 					<div
 						className="container"
@@ -151,7 +208,38 @@ export default function ProjectDetail({
 							gap: 32,
 						}}
 					>
-						{content.screens.slice(1, 3).map((screen) => (
+						{content.screens.slice(hasVideo ? 0 : 1, hasVideo ? 2 : 3).map((screen) => (
+							<div key={screen.label} className="proj-image-frame">
+								<Image
+									src={screen.src}
+									alt={screen.label}
+									width={700}
+									height={440}
+									style={{
+										width: "100%",
+										height: "auto",
+										borderRadius: 12,
+									}}
+								/>
+								<div className="proj-image-label mono">{screen.label}</div>
+							</div>
+						))}
+					</div>
+				</section>
+			)}
+
+			{/* Remaining screens if there are more than 3 */}
+			{content.screens.length > 3 && !isAppShowcase && (
+				<section style={{ padding: "40px 0" }}>
+					<div
+						className="container"
+						style={{
+							display: "grid",
+							gridTemplateColumns: "1fr 1fr",
+							gap: 32,
+						}}
+					>
+						{content.screens.slice(3, 5).map((screen) => (
 							<div key={screen.label} className="proj-image-frame">
 								<Image
 									src={screen.src}
