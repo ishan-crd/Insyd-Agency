@@ -10,7 +10,7 @@ export default function HomeHero() {
 			<div className="container hero__inner">
 				<div className="hero__meta">
 					<div className="mono">INSYD / IN — Est. 2019</div>
-					<div className="mono">Studio for digital products · Bengaluru</div>
+					<div className="mono">Studio for digital products</div>
 				</div>
 
 				<h1 className="hero__headline display">

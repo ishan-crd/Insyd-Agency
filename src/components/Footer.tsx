@@ -106,7 +106,6 @@ export default function Footer() {
 					<div>
 						<div className="mono muted">Studio</div>
 						<ul>
-							<li>Bengaluru, IN</li>
 							<li>Remote-first</li>
 							<li>Accepting 2 projects — Q3 2026</li>
 						</ul>
@@ -118,7 +117,7 @@ export default function Footer() {
 					Insyd © 2026 — All Your IT Solutions. One Stop.
 				</div>
 				<div className="mono">
-					<span className="live-dot" /> Bengaluru · {time} IST
+					<span className="live-dot" /> {time} IST
 				</div>
 			</div>
 		</footer>

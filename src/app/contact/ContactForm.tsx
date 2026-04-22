@@ -21,10 +21,37 @@ export default function ContactForm() {
 		setServices(next);
 	};
 
-	const onSubmit = (e: React.FormEvent) => {
+	const [sending, setSending] = useState(false);
+
+	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		setToast(true);
-		setTimeout(() => setToast(false), 3200);
+		if (sending) return;
+		setSending(true);
+
+		try {
+			const res = await fetch("/api/contact", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					...form,
+					services: Array.from(services),
+					budget,
+				}),
+			});
+
+			if (res.ok) {
+				setToast(true);
+				setTimeout(() => setToast(false), 4000);
+				setForm({ name: "", email: "", company: "", about: "" });
+				setServices(new Set(["Product design"]));
+				setBudget("₹20–40L");
+				setSlot(null);
+			}
+		} catch {
+			// silently fail — toast won't show
+		} finally {
+			setSending(false);
+		}
 	};
 
 	const slots = useMemo(() => {
@@ -158,7 +185,12 @@ export default function ContactForm() {
 						onChange={(e) => setForm({ ...form, about: e.target.value })}
 					/>
 				</div>
-				<button type="submit" className="contact-submit" data-cursor="button">
+				<button
+					type="submit"
+					className="contact-submit"
+					data-cursor="button"
+					disabled={sending}
+				>
 					<span
 						style={{
 							width: 8,
@@ -167,7 +199,7 @@ export default function ContactForm() {
 							borderRadius: "50%",
 						}}
 					/>
-					Send enquiry
+					{sending ? "Sending…" : "Send enquiry"}
 					<span style={{ marginLeft: 8 }}>→</span>
 				</button>
 			</form>

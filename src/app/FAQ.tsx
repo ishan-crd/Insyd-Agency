@@ -21,7 +21,7 @@ const items = [
 	},
 	{
 		q: "Where are you based?",
-		a: "Bengaluru, India. We work remote-first across Europe, the US, and India. Two of us are in London half the year.",
+		a: "We work remote-first across India, Europe, and the US.",
 	},
 ];
 
