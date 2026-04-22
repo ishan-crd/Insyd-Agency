@@ -7,6 +7,10 @@ export default function ContactForm() {
 	const [budget, setBudget] = useState("₹20–40L");
 	const [slot, setSlot] = useState<string | null>(null);
 	const [toast, setToast] = useState(false);
+	const [toastMsg, setToastMsg] = useState("Message received. We'll be in touch.");
+	const [bookingName, setBookingName] = useState("");
+	const [bookingEmail, setBookingEmail] = useState("");
+	const [bookingSending, setBookingSending] = useState(false);
 	const [form, setForm] = useState({
 		name: "",
 		email: "",
@@ -40,6 +44,7 @@ export default function ContactForm() {
 			});
 
 			if (res.ok) {
+				setToastMsg("Message received. We'll be in touch.");
 				setToast(true);
 				setTimeout(() => setToast(false), 4000);
 				setForm({ name: "", email: "", company: "", about: "" });
@@ -210,6 +215,36 @@ export default function ContactForm() {
 					<p>
 						Pick a 30-minute slot — we&apos;ll confirm by email. All times IST.
 					</p>
+					<div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 16 }}>
+						<input
+							type="text"
+							placeholder="Your name"
+							value={bookingName}
+							onChange={(e) => setBookingName(e.target.value)}
+							style={{
+								padding: "10px 14px",
+								border: "1px solid var(--line)",
+								borderRadius: 8,
+								background: "transparent",
+								color: "var(--ink)",
+								fontSize: 14,
+							}}
+						/>
+						<input
+							type="email"
+							placeholder="your@email.com"
+							value={bookingEmail}
+							onChange={(e) => setBookingEmail(e.target.value)}
+							style={{
+								padding: "10px 14px",
+								border: "1px solid var(--line)",
+								borderRadius: 8,
+								background: "transparent",
+								color: "var(--ink)",
+								fontSize: 14,
+							}}
+						/>
+					</div>
 					<div className="contact-cal">
 						{slots.map((s) => (
 							<button
@@ -242,6 +277,56 @@ export default function ContactForm() {
 								{slots.find((s) => s.key === slot)?.date} · 14:00 IST
 							</div>
 						</div>
+					)}
+					{slot && bookingName && bookingEmail && (
+						<button
+							type="button"
+							className="contact-submit"
+							data-cursor="button"
+							disabled={bookingSending}
+							onClick={async () => {
+								if (bookingSending) return;
+								setBookingSending(true);
+								try {
+									const selectedSlot = slots.find((s) => s.key === slot);
+									const res = await fetch("/api/book", {
+										method: "POST",
+										headers: { "Content-Type": "application/json" },
+										body: JSON.stringify({
+											name: bookingName,
+											email: bookingEmail,
+											date: slot,
+											day: selectedSlot?.day,
+											dateLabel: selectedSlot?.date,
+										}),
+									});
+									if (res.ok) {
+										setToastMsg("Call booked! Check your email for confirmation.");
+										setToast(true);
+										setTimeout(() => setToast(false), 4000);
+										setSlot(null);
+										setBookingName("");
+										setBookingEmail("");
+									}
+								} catch {
+									// silently fail
+								} finally {
+									setBookingSending(false);
+								}
+							}}
+							style={{ marginTop: 16, width: "100%" }}
+						>
+							<span
+								style={{
+									width: 8,
+									height: 8,
+									background: "var(--accent)",
+									borderRadius: "50%",
+								}}
+							/>
+							{bookingSending ? "Booking…" : "Confirm booking"}
+							<span style={{ marginLeft: 8 }}>→</span>
+						</button>
 					)}
 				</div>
 				<div className="contact-side-block">
@@ -280,7 +365,7 @@ export default function ContactForm() {
 							borderRadius: "50%",
 						}}
 					/>
-					Message received. We&apos;ll be in touch.
+					{toastMsg}
 				</div>
 			)}
 		</>
