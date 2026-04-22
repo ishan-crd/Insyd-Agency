@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export default function ContactForm() {
 	const [services, setServices] = useState(new Set(["Product design"]));
@@ -67,44 +67,41 @@ export default function ContactForm() {
 		}
 	};
 
+	const [today, setToday] = useState(() => new Date().toISOString().slice(0, 10));
+
+	// Refresh date at midnight so slots auto-update
+	useEffect(() => {
+		const check = () => {
+			const now = new Date().toISOString().slice(0, 10);
+			if (now !== today) {
+				setToday(now);
+				setSlot(null);
+				setBookingTime(null);
+			}
+		};
+		const id = setInterval(check, 30_000);
+		return () => clearInterval(id);
+	}, [today]);
+
 	const slots = useMemo(() => {
-		const days: {
-			key: string;
-			day: string;
-			date: string;
-			full: boolean;
-		}[] = [];
 		const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 		const monthNames = [
-			"Jan",
-			"Feb",
-			"Mar",
-			"Apr",
-			"May",
-			"Jun",
-			"Jul",
-			"Aug",
-			"Sep",
-			"Oct",
-			"Nov",
-			"Dec",
+			"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+			"Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 		];
-		const d = new Date();
-		d.setDate(d.getDate() + 1);
-		while (days.length < 10) {
-			const dow = d.getDay();
-			if (dow !== 0 && dow !== 6) {
-				days.push({
-					key: d.toISOString().slice(0, 10),
-					day: dayNames[dow],
-					date: `${d.getDate()} ${monthNames[d.getMonth()]}`,
-					full: days.length === 1 || days.length === 4,
-				});
-			}
-			d.setDate(d.getDate() + 1);
+		const days: { key: string; day: string; date: string }[] = [];
+		const d = new Date(today + "T00:00:00");
+		for (let i = 0; i < 10; i++) {
+			const current = new Date(d);
+			current.setDate(d.getDate() + i);
+			days.push({
+				key: current.toISOString().slice(0, 10),
+				day: dayNames[current.getDay()],
+				date: `${current.getDate()} ${monthNames[current.getMonth()]}`,
+			});
 		}
 		return days;
-	}, []);
+	}, [today]);
 
 	return (
 		<>
@@ -258,8 +255,8 @@ export default function ContactForm() {
 							<button
 								type="button"
 								key={s.key}
-								className={`contact-cal-slot ${s.full ? "full" : ""} ${slot === s.key ? "is-on" : ""}`}
-								onClick={() => !s.full && setSlot(s.key)}
+								className={`contact-cal-slot ${slot === s.key ? "is-on" : ""}`}
+								onClick={() => setSlot(s.key)}
 								data-cursor="button"
 							>
 								<span className="day">{s.day}</span>
