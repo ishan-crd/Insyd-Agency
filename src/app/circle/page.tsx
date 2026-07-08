@@ -142,8 +142,9 @@ export default function CircleLegalPage() {
 									Circle: <strong>Supabase</strong> (database, authentication,
 									photo storage and realtime messaging), <strong>Expo</strong>{" "}
 									(push notification delivery), <strong>Apple</strong> (Sign in
-									with Apple and push delivery via APNs),{" "}
-									<strong>Google</strong> (Sign in with Google), and{" "}
+									with Apple, push delivery via APNs, and converting map
+									coordinates into a city name on iOS), <strong>Google</strong>{" "}
+									(Sign in with Google), and{" "}
 									<strong>OpenStreetMap / Nominatim</strong> (place search in
 									the location picker). These providers process data only to
 									provide their service to us.
@@ -179,12 +180,14 @@ export default function CircleLegalPage() {
 								required by law.
 							</p>
 
-							<h3>Security</h3>
+							<h3>Security &amp; where your data is stored</h3>
 							<p>
 								Data is encrypted in transit, access is protected by
 								authentication and row-level security, and only you can modify
-								your own data. No system is perfectly secure, but we work to
-								protect your information.
+								your own data. Your information is stored on our provider&apos;s
+								cloud infrastructure, which may be located outside your country;
+								by using Circle you consent to this. No system is perfectly
+								secure, but we work to protect your information.
 							</p>
 
 							<h3>Children</h3>
