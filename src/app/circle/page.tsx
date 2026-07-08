@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 const UPDATED = "8 July 2026";
-const CONTACT = "hello@insyd.in";
+const CONTACT = "ishan@insyd.in";
 
 export default function CircleLegalPage() {
 	return (
