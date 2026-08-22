@@ -102,6 +102,16 @@ export default function Footer() {
 						<ul>
 							<li>Remote-first</li>
 							<li>Accepting 2 projects — Q3 2026</li>
+							<li>
+								<Link href="/privacy" data-cursor="link">
+									Privacy Policy
+								</Link>
+							</li>
+							<li>
+								<Link href="/terms" data-cursor="link">
+									Terms &amp; Conditions
+								</Link>
+							</li>
 						</ul>
 					</div>
 				</div>
