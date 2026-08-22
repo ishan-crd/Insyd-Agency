@@ -14,7 +14,7 @@ const CONTACT = "ishan@insyd.in";
 export default function TermsPage() {
 	return (
 		<>
-			<Header page="terms" />
+			<Header page="terms-and-conditions" />
 			<main>
 				<section
 					className="section"
@@ -88,7 +88,7 @@ export default function TermsPage() {
 								If you do not agree, do not use the Services. An individual App
 								may publish supplementary terms; where they conflict, the
 								App-specific terms govern for that App. Our{" "}
-								<Link href="/privacy">Privacy Policy</Link> is incorporated into
+								<Link href="/privacy-policy">Privacy Policy</Link> is incorporated into
 								these Terms by reference.
 							</p>
 
@@ -508,7 +508,7 @@ export default function TermsPage() {
 							<h2 className="display">19. General</h2>
 							<p>
 								These Terms, together with the{" "}
-								<Link href="/privacy">Privacy Policy</Link> and any App-specific
+								<Link href="/privacy-policy">Privacy Policy</Link> and any App-specific
 								terms, are the entire agreement between you and Insyd regarding
 								the Services. If any provision is held unenforceable, the rest
 								remains in effect and the unenforceable provision is modified to
@@ -538,7 +538,7 @@ export default function TermsPage() {
 							<hr />
 
 							<p>
-								See also our <Link href="/privacy">Privacy Policy</Link>.
+								See also our <Link href="/privacy-policy">Privacy Policy</Link>.
 							</p>
 						</div>
 					</div>

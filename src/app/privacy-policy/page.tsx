@@ -14,7 +14,7 @@ const CONTACT = "ishan@insyd.in";
 export default function PrivacyPage() {
 	return (
 		<>
-			<Header page="privacy" />
+			<Header page="privacy-policy" />
 			<main>
 				<section
 					className="section"
@@ -94,7 +94,7 @@ export default function PrivacyPage() {
 								supplementary notice conflicts with this policy, the
 								App-specific notice governs for that App. Your use of the
 								Services is also subject to our{" "}
-								<Link href="/terms">Terms &amp; Conditions</Link>.
+								<Link href="/terms-and-conditions">Terms &amp; Conditions</Link>.
 							</p>
 
 							<h2 className="display">2. Information we collect</h2>
@@ -464,7 +464,7 @@ export default function PrivacyPage() {
 							<hr />
 
 							<p>
-								See also our <Link href="/terms">Terms &amp; Conditions</Link>.
+								See also our <Link href="/terms-and-conditions">Terms &amp; Conditions</Link>.
 							</p>
 						</div>
 					</div>
