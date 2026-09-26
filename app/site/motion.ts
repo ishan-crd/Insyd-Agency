@@ -21,7 +21,9 @@ export function useScrollProgress(
   cb?: (p: number) => void,
 ) {
   const cbRef = useRef(cb);
-  cbRef.current = cb;
+  useEffect(() => {
+    cbRef.current = cb;
+  });
   useEffect(() => {
     let raf = 0;
     let last = -1;
