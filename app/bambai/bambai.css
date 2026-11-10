@@ -47,11 +47,6 @@ html:has(.bb)::-webkit-scrollbar-thumb { background: #33373e; border-radius: 10p
   padding: 16px var(--gut);
   transition: background 0.5s var(--out), backdrop-filter 0.5s, box-shadow 0.5s;
 }
-.scrolled .bnav {
-  background: color-mix(in srgb, #0b0c0e 72%, transparent);
-  backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2);
-  box-shadow: 0 1px 0 rgba(236, 230, 218, 0.07);
-}
 .bnav-brand { display: inline-flex; align-items: baseline; gap: 8px; color: var(--bone); }
 .bnav-brand .logo { font-size: 27px; }
 .bnav-brand .logo-dot { background: var(--taxi); }
