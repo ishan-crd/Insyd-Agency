@@ -34,9 +34,9 @@ export function Statement() {
 }
 
 const CAPTIONS = [
-  { t: "Take off from Marine Drive", s: "Board a helicopter on the sea face." },
-  { t: "Over the Fort", s: "Rajabai Tower, the Oval, a sea of red roofs." },
-  { t: "Down to the harbour", s: "The Taj, the Gateway, ferries on the water." },
+  { t: "Walk Marine Drive", s: "The sea wall on one side, the whole city on the other." },
+  { t: "After the rain", s: "Low clouds, wet tarmac, the Queen's Necklace in the mirror." },
+  { t: "Break into a run", s: "Weave past hawkers and walkers, cross at the signal, keep going." },
 ];
 
 /** The gameplay reel: a framed video that opens up to full-bleed as you scroll, plus the full gameplay player. */
@@ -66,8 +66,8 @@ export function Reel() {
     <section ref={ref} className="reel" id="reel" aria-label="Gameplay">
       <div className="reel-sticky">
         <div ref={frame} className="reel-frame">
-          <video data-autoplay muted loop playsInline preload="none" poster="/bambai/img/city-poster.jpg">
-            <source src="/bambai/video/city.mp4" type="video/mp4" />
+          <video data-autoplay muted loop playsInline preload="none" poster="/bambai/img/marinedrive-poster.jpg">
+            <source src="/bambai/video/marinedrive.mp4" type="video/mp4" />
           </video>
           <div className="reel-shade" />
           <div className="reel-caps" aria-live="off">
