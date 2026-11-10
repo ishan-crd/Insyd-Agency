@@ -120,7 +120,7 @@ html:has(.bb)::-webkit-scrollbar-thumb { background: #33373e; border-radius: 10p
 }
 .hero-b-word {
   display: flex; font-family: var(--sign); font-weight: 900; text-transform: uppercase;
-  font-size: clamp(112px, 24.5vw, 470px); line-height: 0.78; letter-spacing: -0.012em;
+  font-size: clamp(96px, 19vw, 360px); line-height: 0.78; letter-spacing: -0.012em;
   margin-left: -0.035em; color: var(--bone);
   overflow: hidden; padding-top: 0.06em;
 }
@@ -390,7 +390,7 @@ html:has(.bb)::-webkit-scrollbar-thumb { background: #33373e; border-radius: 10p
   .bnav-games { display: none; }
   .bnav-cta { padding: 10px 14px; font-size: 14px; }
   .hero-b-meta { top: 80px; }
-  .hero-b-word { font-size: 29.5vw; }
+  .hero-b-word { font-size: 25vw; }
   .wl-field { flex-direction: column; align-items: stretch; border-radius: 22px; padding: 6px; }
   .wl input[type="email"] { height: 50px; padding-left: 14px; }
   .wl-btn { justify-content: center; height: 50px; }
