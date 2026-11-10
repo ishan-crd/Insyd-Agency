@@ -12,12 +12,13 @@ npm run dev
 
 ## Waitlist
 
-`POST /api/waitlist` stores emails in Redis through the Upstash REST API. Add an Upstash Redis store to the
-Vercel project (Storage, Upstash, Redis) so `KV_REST_API_URL` and `KV_REST_API_TOKEN` are set; the route also
-accepts `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`. Emails go in the set `bambai:waitlist` and the
-join time in the hash `bambai:waitlist:joined`.
+`POST /api/waitlist` saves each signup as a private file `waitlist/<email>.json` in the project's Vercel Blob
+store (needs `BLOB_READ_WRITE_TOKEN`, which Vercel sets when the store is connected to the project). You can
+browse them in the Vercel dashboard under Storage, or download them all as CSV from
+`/api/waitlist?key=<WAITLIST_ADMIN_KEY>`.
 
-In local development without those variables the route writes to `.waitlist.json` (git-ignored).
+In local development without a Blob token the route writes to `.waitlist.json` (git-ignored), and the CSV
+export needs no key.
 
 ## Assets
 
