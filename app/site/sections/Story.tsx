@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { CONTACT_EMAIL, FILMS, GITHUB, PROJECTS, SERVICES, STEPS } from "../data";
 import { seg, useInView, useScrollProgress } from "../motion";
 import { Arrow, GitHubIcon, Logo, Magnetic, Words } from "../ui";
+import Link from "next/link";
 
 /* ------------------------------------------------------------------ manifesto: words light up as you scroll */
 const MANIFESTO =
@@ -242,6 +243,7 @@ export function Footer() {
           </div>
           <div>
             <h4>Studio</h4>
+            <Link href="/">Bambai, our game</Link>
             <a href="#services">Services</a>
             <a href="#process">Process</a>
             <a href="#films">Films</a>

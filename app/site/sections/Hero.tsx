@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { PROJECTS } from "../data";
 import { ease, seg, useScrollProgress } from "../motion";
 import { Arrow, Logo } from "../ui";
+import Link from "next/link";
 
 export function Nav() {
   return (
@@ -12,6 +13,7 @@ export function Nav() {
         <Logo />
       </a>
       <nav className="nav-links" aria-label="Sections">
+        <Link href="/">Bambai</Link>
         <a href="#work">Work</a>
         <a href="#films">Films</a>
         <a href="#services">Services</a>
