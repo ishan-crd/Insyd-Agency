@@ -135,7 +135,7 @@ export function Hero() {
           </h1>
           <div className="hero-b-row">
             <p className="hero-b-sub">
-              An open-world game set in South Mumbai. Every street from Colaba to Churchgate, rebuilt in Unreal Engine 5.
+              An open-world game set in Mumbai. Every street from Colaba to Churchgate, rebuilt in Unreal Engine 5.
             </p>
             <div className="hero-b-form">
               <Waitlist id="hero-waitlist" />
