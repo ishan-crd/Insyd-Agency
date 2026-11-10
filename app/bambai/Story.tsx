@@ -84,7 +84,7 @@ export function Reel() {
                 <path d="M5 3.5v11l9-5.5z" fill="currentColor" />
               </svg>
             </span>
-            Watch the gameplay <span className="reel-len">1:52</span>
+            Watch the gameplay <span className="reel-len">1:49</span>
           </button>
         </div>
       </div>
