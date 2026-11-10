@@ -35,7 +35,7 @@ export function Nav() {
     <header className="bnav">
       <a href="#top" className="bnav-brand" aria-label="Insyd, back to top" onClick={() => setOpen(false)}>
         <Logo />
-        <span className="bnav-games">games</span>
+        <span className="bnav-games">studios</span>
       </a>
       <nav className="bnav-links" aria-label="Sections">
         {LINKS.map((l) => (
