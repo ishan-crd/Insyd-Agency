@@ -33,41 +33,46 @@ export function Statement() {
   );
 }
 
+/** Each caption covers a stretch of the reel video, in seconds. */
 const CAPTIONS = [
-  { t: "Walk Marine Drive", s: "The sea wall on one side, the whole city on the other." },
-  { t: "After the rain", s: "Low clouds, wet tarmac, the Queen's Necklace in the mirror." },
-  { t: "Break into a run", s: "Weave past hawkers and walkers, cross at the signal, keep going." },
+  { t: "Wake up in the chawl", s: "Peeling walls, a ceiling fan, washing on the line. Step out onto the corridor.", until: 13.2 },
+  { t: "Walk Marine Drive", s: "The sea wall on one side, the whole city on the other.", until: 24.8 },
+  { t: "Take the chopper", s: "Land it on the road, climb in, and lift off over the Queen's Necklace.", until: Infinity },
 ];
 
 /** The gameplay reel: a framed video that opens up to full-bleed as you scroll, plus the full gameplay player. */
 export function Reel() {
   const ref = useRef<HTMLElement>(null);
   const frame = useRef<HTMLDivElement>(null);
+  const vid = useRef<HTMLVideoElement>(null);
   const [cap, setCap] = useState(0);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    let last = -1;
     return onStickyProgress(el, (p) => {
       const open = Math.min(1, p / 0.45);
       const e = 1 - Math.pow(1 - open, 3);
       frame.current?.style.setProperty("--open", e.toFixed(4));
-      const c = p < 0.42 ? 0 : p < 0.72 ? 1 : 2;
-      if (c !== last) {
-        last = c;
-        setCap(c);
-      }
     });
+  }, []);
+
+  // captions follow what the video is showing
+  useEffect(() => {
+    const v = vid.current;
+    if (!v) return;
+    const on = () => setCap(CAPTIONS.findIndex((c) => v.currentTime < c.until));
+    v.addEventListener("timeupdate", on);
+    return () => v.removeEventListener("timeupdate", on);
   }, []);
 
   return (
     <section ref={ref} className="reel" id="reel" aria-label="Gameplay">
       <div className="reel-sticky">
         <div ref={frame} className="reel-frame">
-          <video data-autoplay muted loop playsInline preload="none" poster="/bambai/img/marinedrive-poster.jpg">
-            <source src="/bambai/video/marinedrive.mp4" type="video/mp4" />
+          <video ref={vid} data-autoplay muted loop playsInline preload="none" poster="/bambai/img/chawl-reel-poster.jpg">
+            <source src="/bambai/video/chawl-reel.mp4" type="video/mp4" />
           </video>
           <div className="reel-shade" />
           <div className="reel-caps" aria-live="off">
