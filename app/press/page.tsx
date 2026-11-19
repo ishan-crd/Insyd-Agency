@@ -60,14 +60,6 @@ export default function Press() {
                 <dd>{k === "Press contact" ? <a href={`mailto:${v}`}>{v}</a> : v}</dd>
               </div>
             ))}
-            <div>
-              <dt>Play</dt>
-              <dd>
-                <a href={GAME.itch} target="_blank" rel="noreferrer">
-                  sneakypp.itch.io/bambai
-                </a>
-              </dd>
-            </div>
           </dl>
         </div>
         <div>

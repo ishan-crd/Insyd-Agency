@@ -44,10 +44,7 @@ export function Proof() {
           })}
         </div>
         <div className="proof-ctas" data-reveal style={{ ["--d" as string]: "280ms" }}>
-          <a className="proof-btn proof-btn-solid" href={GAME.itch} target="_blank" rel="noreferrer">
-            Play free on itch.io
-          </a>
-          <a className="proof-btn" href={GAME.reel} target="_blank" rel="noreferrer">
+          <a className="proof-btn proof-btn-solid" href={GAME.reel} target="_blank" rel="noreferrer">
             Watch the 1.8M reel
           </a>
           <Link className="proof-btn" href="/press">

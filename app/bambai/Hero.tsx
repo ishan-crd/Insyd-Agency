@@ -146,11 +146,7 @@ export function Hero() {
             </div>
           </div>
           <p className="hero-b-plat">
-            <span className="dot" /> Playable now on PC ·{" "}
-            <a href="https://sneakypp.itch.io/bambai" target="_blank" rel="noreferrer">
-              free on itch.io
-            </a>{" "}
-            · 1.8M views · by Insyd Studios
+            <span className="dot" /> In development for PC · 1.8M views · by Insyd Studios
           </p>
         </div>
       </div>

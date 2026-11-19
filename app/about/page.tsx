@@ -81,11 +81,8 @@ export default function About() {
           What&apos;s next
         </h2>
         <p className="blede">
-          {GAME.name} is in development for PC, with a free playable build on{" "}
-          <a href={GAME.itch} target="_blank" rel="noreferrer">
-            itch.io
-          </a>
-          . After Mumbai, Insyd Studios will take the same approach to more Indian cities and stories.
+          {GAME.name} is in development for PC. Alongside it, Insyd Studios is using the same pipeline to build more
+          realistic games.
         </p>
         <p className="doc-links-row">
           <Link href="/press">Press kit</Link>

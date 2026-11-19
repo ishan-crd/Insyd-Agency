@@ -22,10 +22,9 @@ export const FOUNDER = {
 export const GAME = {
   name: "Bambai",
   tagline: "An open-world game set in South Mumbai",
-  itch: "https://sneakypp.itch.io/bambai",
   platform: "PC (Windows)",
   engine: "Unreal Engine 5",
-  status: "In development. Free playable build on itch.io",
+  status: "In development",
   views: "1.8M",
   reel: "https://www.instagram.com/reel/Df4X02LTc6X",
   linkedinViews: "25K",
@@ -64,7 +63,6 @@ export function searchData() {
         foundingDate: STUDIO.founded,
         founder: { "@id": person },
         address: { "@type": "PostalAddress", addressLocality: "Delhi", addressCountry: "IN" },
-        sameAs: [GAME.itch],
       },
       {
         "@type": "Person",
@@ -90,7 +88,6 @@ export function searchData() {
         author: { "@id": person },
         publisher: { "@id": org },
         creator: { "@id": org },
-        sameAs: [GAME.itch],
       },
       {
         "@type": "WebSite",
