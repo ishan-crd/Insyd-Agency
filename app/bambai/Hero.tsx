@@ -43,6 +43,8 @@ export function Nav() {
             {l.label}
           </a>
         ))}
+        <Link href="/about">About</Link>
+        <Link href="/press">Press</Link>
         <Link href="/other-projects" className="bnav-other">
           Other projects
         </Link>
@@ -67,6 +69,8 @@ export function Nav() {
             {l.label}
           </a>
         ))}
+        <Link href="/about">About</Link>
+        <Link href="/press">Press</Link>
         <Link href="/other-projects">Other projects</Link>
         <button
           type="button"

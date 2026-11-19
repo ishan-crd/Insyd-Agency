@@ -410,3 +410,58 @@ html:has(.bb)::-webkit-scrollbar-thumb { background: #33373e; border-radius: 10p
   .st-w { opacity: 1 !important; }
 }
 .people-copy .bh2 { font-size: clamp(44px, 6.2vw, 104px); }
+
+/* ---------------------------------------------------------------- text pages (about, press) */
+.doc { min-height: 100svh; display: flex; flex-direction: column; }
+.doc main { flex: 1; }
+.doc a:not(.bnav-brand) { color: var(--taxi); text-underline-offset: 3px; }
+.doc a:not(.bnav-brand):hover { text-decoration: underline; }
+.doc-nav, .doc-foot { width: 100%; }
+.doc-nav { display: flex; align-items: center; gap: 24px; padding-top: 20px; padding-bottom: 20px; }
+.doc-links { margin-left: auto; display: flex; gap: 4px; }
+.doc .doc-links a { color: var(--muted); padding: 8px 12px; border-radius: 99px; font-size: 15px; font-weight: 500; }
+.doc .doc-links a:hover { color: var(--bone); background: rgba(236, 230, 218, 0.07); text-decoration: none; }
+.doc-hero { padding-top: clamp(48px, 9vw, 120px); padding-bottom: 40px; }
+.doc-hero .bh2 { margin: 10px 0 24px; }
+.doc-eyebrow { font-family: var(--sign); font-weight: 800; font-size: 15px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--taxi); }
+.doc-h { font-family: var(--sign); font-weight: 900; text-transform: uppercase; font-size: clamp(30px, 3.4vw, 48px); line-height: 0.95; margin-bottom: 18px; }
+.doc-h-gap { margin-top: 40px; }
+.doc p { line-height: 1.6; }
+.doc-two p, .doc-founder p { color: var(--muted); font-size: 17px; max-width: 62ch; margin-bottom: 14px; }
+.doc-facts { display: grid; grid-template-columns: repeat(4, 1fr); border-block: 1px solid var(--line); margin-top: 20px; margin-bottom: 72px; }
+.doc-facts div { padding: 26px 24px 24px; border-left: 1px solid var(--line); display: grid; gap: 6px; align-content: start; }
+.doc-facts div:first-child { border-left: 0; padding-left: 0; }
+.doc-facts strong { font-family: var(--sign); font-weight: 900; font-size: clamp(40px, 5vw, 72px); line-height: 0.9; color: var(--bone); }
+.doc-facts span { color: var(--muted); font-size: 14.5px; }
+.doc-founder { display: grid; grid-template-columns: minmax(220px, 360px) 1fr; gap: clamp(28px, 5vw, 72px); align-items: start; margin-bottom: 80px; }
+.doc-founder img { width: 100%; height: auto; border-radius: 14px; filter: saturate(0.9); }
+.doc-two { display: grid; grid-template-columns: minmax(260px, 420px) 1fr; gap: clamp(28px, 5vw, 80px); margin-bottom: 80px; }
+.doc-sheet { display: grid; border-top: 1px solid var(--line); }
+.doc-sheet div { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+.doc-sheet dt { color: var(--faint); }
+.doc-sheet dd { color: var(--bone); }
+.doc-block { margin-bottom: 80px; }
+.doc-note { color: var(--faint); font-size: 14.5px; margin: -6px 0 18px; }
+.doc-shots { display: grid; grid-template-columns: repeat(2, 1fr); max-width: 1100px; gap: 12px; }
+.doc-shots img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; display: block; transition: transform 0.4s var(--out); }
+.doc-shots a:hover img { transform: scale(1.015); }
+.doc-video { width: 100%; max-width: 1100px; aspect-ratio: 16 / 9; border-radius: 12px; background: #000; display: block; }
+.doc-assets { display: flex; gap: 16px; flex-wrap: wrap; }
+.doc-assets a { display: grid; gap: 10px; width: 200px; font-size: 14.5px; }
+.doc-assets img { width: 200px; height: 200px; object-fit: cover; border-radius: 10px; background: #fff; }
+.doc-links-row { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 20px; font-weight: 500; }
+.doc-foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 22px; padding-bottom: 26px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--faint); }
+@media (max-width: 900px) {
+  .doc-facts { grid-template-columns: 1fr 1fr; }
+  .doc-facts div { padding: 20px 16px; }
+  .doc-facts div:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .doc-facts div:nth-child(n + 3) { border-top: 1px solid var(--line); }
+  .doc-founder, .doc-two { grid-template-columns: 1fr; }
+  .doc-founder img { max-width: 320px; }
+}
+@media (max-width: 520px) {
+  .doc-nav { gap: 8px; }
+  .doc .doc-links a { padding: 8px 8px; font-size: 14px; }
+  .doc-shots { grid-template-columns: 1fr; }
+  .doc-sheet div { grid-template-columns: 110px 1fr; }
+}

@@ -95,19 +95,21 @@ export function BFooter() {
       <div className="bwrap bfoot-row">
         <div className="bfoot-brand">
           <Logo />
-          <p>Insyd is an independent studio. Bambai is our first game.</p>
+          <p>Insyd Studios is an independent game studio from India, founded by Ishan Gupta. Bambai is our first game.</p>
         </div>
         <nav className="bfoot-links" aria-label="Footer">
           <a href="#reel">Gameplay</a>
           <a href="#city">The city</a>
           <a href="#garage">Garage</a>
           <a href="#people">People</a>
+          <Link href="/about">About the studio</Link>
+          <Link href="/press">Press kit</Link>
           <Link href="/other-projects">Other projects</Link>
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </nav>
       </div>
       <div className="bwrap bfoot-base">
-        <span>© {new Date().getFullYear()} Insyd</span>
+        <span>© {new Date().getFullYear()} Insyd Studios</span>
         <span>Footage captured in game. Work in progress.</span>
       </div>
       <p className="bfoot-word" aria-hidden>

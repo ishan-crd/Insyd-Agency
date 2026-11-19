@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { SITE, jsonLd, searchData } from "./studio";
 import { Big_Shoulders, Instrument_Serif, Inter_Tight, JetBrains_Mono, Tiro_Devanagari_Marathi } from "next/font/google";
 
 const display = Inter_Tight({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-display" });
@@ -9,16 +10,21 @@ const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variab
 const sign = Big_Shoulders({ subsets: ["latin"], weight: ["600", "800", "900"], variable: "--font-sign" });
 const deva = Tiro_Devanagari_Marathi({ subsets: ["devanagari", "latin"], weight: "400", variable: "--font-deva" });
 
-const title = "Bambai: an open-world game set in South Mumbai · Insyd";
+const title = "Bambai: an open-world game set in South Mumbai · Insyd Studios";
 const description =
-  "Bambai is an open-world game set in South Mumbai, built street by street in Unreal Engine 5 by Insyd. Fly over the Fort, walk Marine Drive in the monsoon, live the city. Join the waitlist.";
+  "Bambai is an open-world game set in South Mumbai, built street by street in Unreal Engine 5 by Insyd Studios, founded by Ishan Gupta. Fly over the Fort, walk Marine Drive in the monsoon, live the city. Join the waitlist.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://insyd.in"),
+  metadataBase: new URL(SITE),
   title,
   description,
+  applicationName: "Insyd Studios",
+  authors: [{ name: "Ishan Gupta", url: `${SITE}/about` }],
+  creator: "Insyd Studios",
+  publisher: "Insyd Studios",
+  keywords: ["Bambai", "Bambai game", "Insyd Studios", "Ishan Gupta", "Mumbai open world game", "Indian open world game", "Unreal Engine 5"],
   alternates: { canonical: "/" },
-  openGraph: { type: "website", url: "https://insyd.in", siteName: "Insyd", title, description, images: ["/bambai/img/og.jpg"] },
+  openGraph: { type: "website", url: SITE, siteName: "Insyd Studios", title, description, images: ["/bambai/img/og.jpg"] },
   twitter: { card: "summary_large_image", title, description, images: ["/bambai/img/og.jpg"] },
   icons: {
     icon: [
@@ -41,7 +47,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       data-theme="dark"
       className={`${display.variable} ${serif.variable} ${mono.variable} ${sign.variable} ${deva.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(searchData())} />
+        {children}
+      </body>
     </html>
   );
 }
