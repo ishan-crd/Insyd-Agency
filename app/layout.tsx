@@ -12,7 +12,7 @@ const deva = Tiro_Devanagari_Marathi({ subsets: ["devanagari", "latin"], weight:
 
 const title = "Bambai: an open-world game set in South Mumbai · Insyd Studios";
 const description =
-  "Bambai is an open-world game set in South Mumbai, built street by street in Unreal Engine 5 by Insyd Studios, founded by Ishan Gupta. Fly over the Fort, walk Marine Drive in the monsoon, live the city. Join the waitlist.";
+  "Bambai is an open-world game set in South Mumbai, built street by street in Unreal Engine 5 by Insyd Studios, founded by Ishan Gupta. Its gameplay reel reached 1.8M views. Fly over the Fort, walk Marine Drive in the monsoon, live the city. Join the waitlist.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),

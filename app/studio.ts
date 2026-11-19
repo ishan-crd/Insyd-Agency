@@ -13,7 +13,7 @@ export const STUDIO = {
 export const FOUNDER = {
   name: "Ishan Gupta",
   role: "Founder, Insyd Studios",
-  photo: "/press/ishan-gupta.jpg",
+  photo: "/press/ishan-gupta-founder-insyd-studios.jpg",
   website: "https://ishandev.in",
   linkedin: "https://linkedin.com/in/ishan2131",
   github: "https://github.com/ishan-crd",
@@ -26,15 +26,17 @@ export const GAME = {
   platform: "PC (Windows)",
   engine: "Unreal Engine 5",
   status: "In development. Free playable build on itch.io",
-  views: "1.5M+",
+  views: "1.8M",
+  reel: "https://www.instagram.com/reel/Df4X02LTc6X",
+  linkedinViews: "25K",
 };
 
 /** The numbers that tell the story fast. */
 export const FACTS = [
+  { value: GAME.views, label: "views on the Instagram reel" },
+  { value: GAME.linkedinViews, label: "views on LinkedIn" },
   { value: "1", label: "developer" },
   { value: "5", label: "weeks to the first playable" },
-  { value: GAME.views, label: "views on the gameplay reel" },
-  { value: "UE5", label: "built in Unreal Engine 5" },
 ];
 
 export const SCREENSHOTS = [

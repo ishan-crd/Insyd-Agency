@@ -51,8 +51,11 @@ export default function About() {
             taxis, crowds and the monsoon, all at real scale in {GAME.engine}.
           </p>
           <p>
-            Its gameplay reel passed {GAME.views} views on Instagram, and studio owners and developers from across the
-            industry reached out to ask how it was made.
+            Its gameplay reel reached{" "}
+            <a href={GAME.reel} target="_blank" rel="noreferrer">
+              {GAME.views} views on Instagram
+            </a>{" "}
+            with no ads, and studio owners and developers from across the industry reached out to ask how it was made.
           </p>
           <p>
             Before games, Ishan shipped production software as a full stack engineer: founding engineer at Clipstake,

@@ -5,6 +5,7 @@ import { Garage } from "./bambai/Garage";
 import { Hero, Nav } from "./bambai/Hero";
 import { People } from "./bambai/People";
 import { Smooth } from "./bambai/Smooth";
+import { Founder, Proof } from "./bambai/Proof";
 import { Reel, Statement } from "./bambai/Story";
 
 export default function Bambai() {
@@ -16,10 +17,12 @@ export default function Bambai() {
           <Hero />
           <Statement />
           <Reel />
+          <Proof />
           <City />
           <Garage />
           <People />
           <Features />
+          <Founder />
           <Finale />
         </main>
         <BFooter />

@@ -84,8 +84,11 @@ export default function Press() {
           <h2 className="doc-h doc-h-gap">About the developer</h2>
           <p>
             {STUDIO.name} is an independent studio from India founded by {FOUNDER.name}. He built the first playable
-            version of Bambai solo, with no team and no funding. Its gameplay reel passed {GAME.views} views on
-            Instagram. <Link href="/about">More about Ishan</Link>
+            version of Bambai solo, with no team and no funding. Its gameplay reel reached{" "}
+            <a href={GAME.reel} target="_blank" rel="noreferrer">
+              {GAME.views} views on Instagram
+            </a>
+            . <Link href="/about">More about Ishan</Link>
           </p>
         </div>
       </section>
